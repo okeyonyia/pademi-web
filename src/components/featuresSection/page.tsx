@@ -1,5 +1,4 @@
 import React from "react";
-import { FiCheck } from "react-icons/fi";
 import { featuresData } from "@/constant/index.js";
 import Card from "../common/card/page";
 
