@@ -1,28 +1,65 @@
-import React from "react";
-import { featuresData } from "@/constant/index.js";
-import Card from "../common/card/page";
+import Image from "next/image";
+import featureSection from "@/assets/images/featureSection.png";
+import { features } from "@/constant";
 
-const FeaturesSection = () => {
+export default function FeaturesSection() {
   return (
-    <section id="features" className="bg-white py-20 ">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Why Pademi for Teams?
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuresData.map((feature, index) => (
-            <Card
-              key={index}
-              heading={feature.heading}
-              content={feature.description}
-              Icon={feature.icon}
-              iconColor={feature.iconColor}
+    <section className="bg-white">
+      <div className="py-16 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Why Pademi for Teams?
+          </h2>
+          {/* <p className="text-gray-600 max-w-3xl mx-auto">
+          Objectively deliver professional value with diverse web-readiness.
+          Collaboratively transition wireless customer service without
+          goal-oriented catalysts for change. Collaboratively.
+        </p> */}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="space-y-8">
+            {features.slice(0, 3).map((feature, index) => (
+              <div key={index} className="flex gap-4">
+                <div
+                  className={`${feature.iconBg} w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0`}
+                >
+                  <span className="text-2xl">{feature.icon}</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">{feature.heading}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="relative h-[600px] mx-auto w-full max-w-[300px]">
+            <Image
+              src={featureSection}
+              alt="Mobile app interface"
+              fill
+              className="object-contain"
             />
-          ))}
+          </div>
+
+          <div className="space-y-8">
+            {features.slice(3).map((feature, index) => (
+              <div key={index} className="flex gap-4">
+                <div
+                  className={`${feature.iconBg} w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0`}
+                >
+                  <span className="text-2xl">{feature.icon}</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">{feature.heading}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default FeaturesSection;
+}
