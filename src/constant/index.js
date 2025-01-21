@@ -1,28 +1,46 @@
+import {
+  FiCalendar,
+  FiGift,
+  FiUsers,
+  FiMessageCircle,
+  FiBarChart2,
+} from "react-icons/fi";
+
 export const featuresData = [
   {
     heading: "Seamless Event Coordination",
     description:
       "Effortlessly schedule offsites, happy hours, and workshops in one place.",
+    icon: FiCalendar,
+    iconColor: "#2563EB",
   },
   {
     heading: "Butter-Up for Incentives",
     description:
       "Attach a budget for transport or fun perks, held securely until the event ends.",
+    icon: FiGift,
+    iconColor: "#16A34A",
   },
   {
     heading: "Internal Matchmaking",
     description:
       "Encourage colleagues from different departments to meet face to face.",
+    icon: FiUsers,
+    iconColor: "#D97706",
   },
   {
     heading: "No Endless Messaging",
     description:
       "Conversation is only possible if attendees share an event, keeping the focus on real interaction.",
+    icon: FiMessageCircle,
+    iconColor: "#9333EA",
   },
   {
     heading: "Analytics & Feedback",
     description:
       "Track participation, measure engagement, and refine future events.",
+    icon: FiBarChart2,
+    iconColor: "#DC2626",
   },
 ];
 
@@ -67,20 +85,26 @@ export const useCasesData = [
   },
 ];
 
-export const offersData = [
+export const benefitsData = [
   {
-    heading: "No Hassle",
+    title: "No Hassle",
     description:
       "Discounts are automatically applied, so you can focus on having a great time.",
+    details:
+      "Our smart system integrates seamlessly with your bookings, ensuring you always get the best price without any extra steps.",
   },
   {
-    heading: "Wide Variety",
+    title: "Wide Variety",
     description:
-      "From cozy cafés to large event spaces, we’re constantly adding new deals.",
+      "From cozy cafés to large event spaces, we're constantly adding new deals.",
+    details:
+      "Explore a diverse range of venues and activities, from intimate dining experiences to expansive conference facilities.",
   },
   {
-    heading: "Corporate Advantage",
+    title: "Corporate Advantage",
     description:
       "Save on bulk bookings for your entire team, stretching your budget further.",
+    details:
+      "Unlock special rates for large groups and recurring events, making team-building and offsite meetings more affordable than ever.",
   },
 ];

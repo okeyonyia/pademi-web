@@ -50,7 +50,11 @@ const NavSection = () => {
               <a
                 key={index}
                 href={`#${link.url}`}
-                className={getLinkClass(link.url)}
+                className={`transition-all duration-500 ease-in-out ${
+                  activeLink === link.url
+                    ? "text-indigo-600 font-medium"
+                    : "hover:text-indigo-500 "
+                }`}
                 onClick={() => handleLinkClick(link.url)}
               >
                 {link.title}
@@ -71,17 +75,22 @@ const NavSection = () => {
         <div className="md:hidden bg-white px-4 pt-2 pb-4 space-y-2">
           {navLinks.map((link, index) => {
             return (
-              <div
+              <a
+                href={`#${link.url}`}
                 key={index}
-                className={` p-4 rounded-lg ${
-                  activeLink === link.url ? "bg-indigo-100" : "bg-white"
+                className={`block p-4 rounded-lg transition-all ${
+                  activeLink === link.url
+                    ? "bg-indigo-100 text-indigo-600 font-semibold"
+                    : "bg-white"
                 }`}
                 onClick={() => handleLinkClick(link.url)}
               >
-                <a href={`#${link.url}`} className={getLinkClass(link.url)}>
-                  {link.title}
-                </a>
-              </div>
+                {link.title}
+              </a>
+              // <div
+
+              // >
+              // </div>
             );
           })}
         </div>

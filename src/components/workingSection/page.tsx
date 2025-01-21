@@ -9,7 +9,11 @@ interface ActiveStepType {
 }
 
 const WorkingSection = () => {
-  const [activeStep, setActiveStep] = useState<ActiveStepType>();
+  const [activeStep, setActiveStep] = useState<ActiveStepType>({
+    step: 1,
+    heading: howItWorksData[0].heading,
+    description: howItWorksData[0].description,
+  });
 
   const handleActiveStep = (stepData: ActiveStepType) => {
     setActiveStep(stepData);

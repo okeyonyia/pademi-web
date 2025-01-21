@@ -1,6 +1,6 @@
 import { useCasesData } from "@/constant";
 import React from "react";
-import { FiChevronRight } from "react-icons/fi";
+import Collapsible from "../common/collapsableItems/page";
 
 const UseCaseSection = () => {
   return (
@@ -9,7 +9,7 @@ const UseCaseSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Corporate Use Cases
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* <div className="grid md:grid-cols-2 gap-8">
           {useCasesData.map((useCase, index) => (
             <div key={index} className="flex items-start">
               <FiChevronRight className="text-indigo-600 text-2xl mr-4 mt-1 flex-shrink-0" />
@@ -21,7 +21,9 @@ const UseCaseSection = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+
+        <Collapsible items={useCasesData} />
       </div>
     </section>
   );

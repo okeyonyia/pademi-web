@@ -15,6 +15,8 @@ const FeaturesSection = () => {
               key={index}
               heading={feature.heading}
               content={feature.description}
+              Icon={feature.icon}
+              iconColor={feature.iconColor}
             />
           ))}
         </div>

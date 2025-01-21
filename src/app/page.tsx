@@ -9,6 +9,7 @@ import PricingSection from "@/components/pricingSection/page";
 import FinalCtaSection from "@/components/finalCtaSection/page";
 import FooterSection from "@/components/footerSection/page";
 import NavSection from "@/components/navSection/page";
+import DownloadAppSection from "@/components/downloadAppSection/page";
 
 export default function PademiForTeams() {
   return (
@@ -24,6 +25,8 @@ export default function PademiForTeams() {
       <UseCaseSection />
 
       <DiscountSection />
+
+      <DownloadAppSection />
 
       <PricingSection />
 

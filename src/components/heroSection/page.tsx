@@ -2,6 +2,7 @@ import React from "react";
 import heroBG from "@/assets/images/heroBG.jpg";
 import heroBottomWave from "@/assets/images/heroBottomWave.svg";
 import Image from "next/image";
+import PrimaryButton from "../common/primaryButton/page";
 
 const HeroSection = () => {
   return (
@@ -25,9 +26,7 @@ const HeroSection = () => {
             more messy group chats or endless email threads.
           </p>
 
-          <button className="bg-white text-indigo-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-transparent transition-all hover:text-white border-2 border-transparent hover:border-white lg:flex">
-            Book a Demo
-          </button>
+          <PrimaryButton title="Book a Demo" />
         </div>
 
         {/* TODO:- Hero Image Section Remaining */}
