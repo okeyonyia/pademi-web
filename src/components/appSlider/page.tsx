@@ -43,8 +43,8 @@ const slides = [
 export default function AppSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleScroll = (event: any) => {
-    const scrollLeft = event.target.scrollLeft;
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = (event.target as HTMLDivElement).scrollLeft;
     const elementWidth = 300 + 16;
     const index = Math.round(scrollLeft / elementWidth);
     setCurrentSlide(index - 1);
