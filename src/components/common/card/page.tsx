@@ -8,7 +8,6 @@ interface cardProps {
 }
 
 const Card = ({ heading, content, Icon, iconColor }: cardProps) => {
-  console.log(iconColor);
   return (
     <div className="bg-white p-6 rounded-lg shadow-md hover:-translate-y-2 transition-all ease-in-out duration-500 min-h-60 justify-center items-center cursor-pointer relative overflow-hidden">
       <div

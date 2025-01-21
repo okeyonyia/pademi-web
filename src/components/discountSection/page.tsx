@@ -1,5 +1,3 @@
-"use client";
-
 import { benefitsData } from "@/constant";
 import React from "react";
 import { BiCheckCircle } from "react-icons/bi";
@@ -17,9 +15,9 @@ const DiscountSection = () => {
         </h2>
         <p className="text-xl mb-16 max-w-3xl mx-auto text-gray-200 leading-relaxed">
           Make the most of every outing or corporate event. Thanks to our
-          partnerships with local venues and service providers, you'll enjoy
-          lower prices on everything—guaranteeing that every hangout you plan is
-          both memorable and cost-effective.
+          partnerships with local venues and service providers, you&apos;ll
+          enjoy lower prices on everything—guaranteeing that every hangout you
+          plan is both memorable and cost-effective.
         </p>
         <h3 className="text-3xl font-semibold mb-12 text-gray-100">
           Better Rates, Bigger Impact
@@ -51,7 +49,7 @@ const DiscountSection = () => {
 
         <div className="space-y-8">
           <h3 className="text-3xl font-semibold text-gray-100">
-            Ready to Book & Save?
+            Ready to Book &amp; Save?
           </h3>
           <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
             Join the Waitlist or Schedule a Demo to see how Pademi can transform
