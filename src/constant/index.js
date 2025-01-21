@@ -1,67 +1,67 @@
-import {
-  FiCalendar,
-  FiGift,
-  FiUsers,
-  FiMessageCircle,
-  FiBarChart2,
-} from "react-icons/fi";
-
-export const featuresData = [
+export const features = [
   {
     heading: "Seamless Event Coordination",
     description:
       "Effortlessly schedule offsites, happy hours, and workshops in one place.",
-    icon: FiCalendar,
-    iconColor: "#2563EB",
+    iconBg: "bg-blue-50",
+    icon: "📅",
   },
   {
     heading: "Butter-Up for Incentives",
     description:
       "Attach a budget for transport or fun perks, held securely until the event ends.",
-    icon: FiGift,
-    iconColor: "#16A34A",
+    iconBg: "bg-yellow-50",
+    icon: "💰",
   },
   {
     heading: "Internal Matchmaking",
     description:
       "Encourage colleagues from different departments to meet face to face.",
-    icon: FiUsers,
-    iconColor: "#D97706",
+    iconBg: "bg-green-50",
+    icon: "🤝",
   },
   {
     heading: "No Endless Messaging",
     description:
       "Conversation is only possible if attendees share an event, keeping the focus on real interaction.",
-    icon: FiMessageCircle,
-    iconColor: "#9333EA",
+    iconBg: "bg-red-50",
+    icon: "✉️",
   },
   {
-    heading: "Analytics & Feedback",
+    heading: "Analytics & Feedback (optional)",
     description:
       "Track participation, measure engagement, and refine future events.",
-    icon: FiBarChart2,
-    iconColor: "#DC2626",
+    iconBg: "bg-purple-50",
+    icon: "📊",
   },
 ];
 
-export const howItWorksData = [
+export const howItWorks = [
   {
-    heading: "Easy Company Onboarding",
+    number: "1",
+    title: "Easy Company Onboarding",
     description: "Create a corporate account, invite employees quickly.",
+    icon: "🏢",
   },
   {
-    heading: "Plan Events & Hangouts",
+    number: "2",
+    title: "Plan Events & Hangouts",
     description:
       "HR or managers set up gatherings; employees join with one tap.",
+    icon: "📅",
   },
   {
-    heading: "Invite & Butter-Up",
+    number: "3",
+    title: "Invite & Butter-Up",
     description:
       "Make it easy for everyone to attend by covering transport or special treats.",
+    icon: "🎁",
   },
   {
-    heading: "Meet & Bond Offline",
+    number: "4",
+    title: "Meet & Bond Offline",
     description: "Real-life interaction fosters stronger team relationships.",
+    icon: "🤝",
   },
 ];
 
