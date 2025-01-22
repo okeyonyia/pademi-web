@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import App01 from "@/assets/images/App01.png";
 import App02 from "@/assets/images/App02.png";
 import App03 from "@/assets/images/App03.png";

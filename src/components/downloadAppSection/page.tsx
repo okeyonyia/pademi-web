@@ -9,13 +9,13 @@ import { AiFillStar } from "react-icons/ai";
 
 const DownloadAppSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 overflow-hidden">
+    <section className="py-24  bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <div className="absolute top-0 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
-        <div className="flex flex-col lg:flex-row items-center justify-between relative max-w-7xl mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="lg:w-1/2 mb-12 lg:mb-0 z-10">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800 leading-tight">
               Elevate Your Experience with Our App

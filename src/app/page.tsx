@@ -9,8 +9,10 @@ import WorkingSection from "@/components/workingSection/page";
 // import FinalCtaSection from "@/components/finalCtaSection/page";
 import FooterSection from "@/components/footerSection/page";
 import NavSection from "@/components/navSection/page";
-// import DownloadAppSection from "@/components/downloadAppSection/page";
+import DownloadAppSection from "@/components/downloadAppSection/page";
 import AppSlider from "@/components/appSlider/page";
+import TrustedCompanySection from "@/components/trustedCompanySection/page";
+import ContactSection from "@/components/contactSection/page";
 
 export default function PademiForTeams() {
   return (
@@ -25,11 +27,16 @@ export default function PademiForTeams() {
 
       <AppSlider />
 
+      <DownloadAppSection />
+
+      <TrustedCompanySection />
+
+      <ContactSection />
+
       {/* <UseCaseSection />
 
       <DiscountSection />
 
-      <DownloadAppSection />
 
       <PricingSection />
 

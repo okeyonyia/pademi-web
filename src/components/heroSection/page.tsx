@@ -17,7 +17,7 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-800/60 via-indigo-600/70 to-indigo-400/70 z-10"></div>
 
-      <div className="mx-auto px-4 max-w-7xl py-20 flex flex-1 flex-col lg:flex-row justify-center items-center space-y-16">
+      <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-7xl py-20 flex flex-1 flex-col lg:flex-row justify-center items-center space-y-16">
         <div className="relative z-20 text-center text-white flex-1">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 lg:text-start">
             Elevate Your Team Bonding with Pademi
