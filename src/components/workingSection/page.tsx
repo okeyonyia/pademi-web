@@ -1,4 +1,6 @@
-import { howItWorks } from "@/constant";
+"use client";
+
+import { howItWorks } from "@/constant/data";
 import PrimaryButton from "../common/primaryButton/page";
 import { BiChevronRight } from "react-icons/bi";
 
@@ -8,11 +10,6 @@ export default function WorkProcess() {
       <div className="py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="heading">How It Works</h2>
-          {/* <p className="text-gray-600 max-w-3xl mx-auto">
-            Distinctively grow go forward manufactured products and optimal
-            networks. Enthusiastically disseminate user-centric outsourcing
-            through revolutionary
-          </p> */}
         </div>
 
         <div className="relative space-y-20">

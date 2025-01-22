@@ -1,5 +1,7 @@
-import { benefitsData } from "@/constant";
+"use client";
+
 import React from "react";
+import { benefitsData } from "@/constant/data";
 import { BiCheckCircle } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
 

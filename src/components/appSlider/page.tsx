@@ -1,44 +1,8 @@
-import Image from "next/image";
-import { useState } from "react";
-import App01 from "@/assets/images/App01.png";
-import App02 from "@/assets/images/App02.png";
-import App03 from "@/assets/images/App03.png";
-import App04 from "@/assets/images/App04.png";
-import App05 from "@/assets/images/App05.png";
-import App06 from "@/assets/images/App06.png";
+"use client";
 
-const slides = [
-  {
-    title: "Course Management",
-    image: App01,
-    description: "Manage your learning journey with our intuitive interface",
-  },
-  {
-    title: "Activity Tracking",
-    image: App02,
-    description: "Track your progress and stay motivated",
-  },
-  {
-    title: "Social Learning",
-    image: App03,
-    description: "Connect with other learners and share experiences",
-  },
-  {
-    title: "Course Management",
-    image: App04,
-    description: "Manage your learning journey with our intuitive interface",
-  },
-  {
-    title: "Activity Tracking",
-    image: App05,
-    description: "Track your progress and stay motivated",
-  },
-  {
-    title: "Social Learning",
-    image: App06,
-    description: "Connect with other learners and share experiences",
-  },
-];
+import LazyImg from "@/components/common/lazyImage/page";
+import { appSlidesData } from "@/constant/data";
+import { useState } from "react";
 
 export default function AppSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -67,17 +31,18 @@ export default function AppSlider() {
           onScroll={handleScroll}
         >
           <div className="flex flex-nowrap pl-[50vw] pr-[50vw] ">
-            {slides.map((slide, index) => (
+            {appSlidesData.map((slide, index) => (
               <div
                 key={index}
                 className={`flex-shrink-0 w-[300px] h-[600px] bg-white rounded-[2.5rem] overflow-hidden mx-4 snap-center transform transition-transform duration-500 ${
                   currentSlide != index ? "scale-95" : "scale-100"
                 }`}
               >
-                <Image
+                <LazyImg
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-cover"
+                  className="w-[300px] h-[600px] object-cover"
+                  placeholder={slide.title}
                 />
               </div>
             ))}
@@ -89,7 +54,7 @@ export default function AppSlider() {
       </div>
 
       <div className="flex justify-center gap-2 mt-8">
-        {slides.map((_, index) => (
+        {appSlidesData.map((_, index) => (
           <div
             key={index}
             className={`w-3 h-3 rounded-full transition-colors ${

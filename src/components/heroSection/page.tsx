@@ -1,16 +1,16 @@
+"use client";
+
 import React from "react";
-import heroBG1 from "@/assets/images/heroBG1.jpg";
-import hero from "@/assets/images/hero.png";
-import heroBottomWave from "@/assets/images/heroBottomWave.svg";
-import Image from "next/image";
 import PrimaryButton from "../common/primaryButton/page";
+import LazyImg from "../common/lazyImage/page";
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
     <section
       className=" min-h-[100svh] w-full bg-cover bg-center bg-no-repeat relative flex flex-1 lg:items-start"
       style={{
-        backgroundImage: `url(${heroBG1.src})`,
+        backgroundImage: `url(assets/images/heroBG1.webp)`,
         width: "100%",
         height: "100%",
       }}
@@ -31,24 +31,25 @@ const HeroSection = () => {
         </div>
 
         <div className="flex-1 z-40 flex justify-center items-center ">
-          <div className="flex justify-center items-center ">
-            <Image
-              src={hero}
-              alt="hero image"
-              style={{ objectFit: "cover" }}
-              className="rounded-3xl shadow-2xl"
-            />
-          </div>
+          <LazyImg
+            src={"assets/images/hero.webp"}
+            alt="hero image"
+            title="hero image"
+            placeholder={"/"}
+            className="rounded-3xl shadow-2xl h-[400px] md:h-[500px] lg:h-[600px] object-contain"
+          />
         </div>
       </div>
 
       <div className=" z-30 absolute bottom-0 w-full">
         <Image
-          src={heroBottomWave}
+          src={"assets/images/heroBottomWave.svg"}
           alt="wave image"
           style={{ objectFit: "cover" }}
           className="w-full"
-        ></Image>
+          width={500}
+          height={300}
+        />
       </div>
     </section>
   );
