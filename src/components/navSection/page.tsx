@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
@@ -45,9 +46,9 @@ const NavSection = () => {
   return (
     <nav className="bg-white shadow-md sticky top-0 w-full z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center max-w-7xl">
-        <a href="/" className="text-2xl font-bold text-indigo-600">
+        <Link href="/" className="text-2xl font-bold text-indigo-600">
           Pademi
-        </a>
+        </Link>
 
         <div className="hidden lg:flex space-x-6">
           {navLinks.map((link, index) => (
@@ -82,9 +83,9 @@ const NavSection = () => {
       >
         <div className="h-full flex flex-col overflow-y-auto bg-gradient-to-br from-indigo-100 via-white to-purple-200">
           <div className="flex justify-between items-center p-4 border-b">
-            <a href="/" className="text-2xl font-bold text-indigo-600">
+            <Link href="/" className="text-2xl font-bold text-indigo-600">
               Pademi
-            </a>
+            </Link>
             <button
               onClick={toggleSidebar}
               className="text-gray-600 focus:outline-none"
