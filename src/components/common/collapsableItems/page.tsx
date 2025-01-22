@@ -18,7 +18,7 @@ const Collapsible = ({ items }: CollapsibleProps) => {
   };
 
   return (
-    <div className="">
+    <div className="py-6">
       {items.map((item, index) => (
         <div key={index} className="border-b border-gray-300 ">
           <div

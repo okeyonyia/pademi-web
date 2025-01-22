@@ -4,12 +4,10 @@ import { features } from "@/constant";
 
 export default function FeaturesSection() {
   return (
-    <section className="bg-white">
-      <div className="py-16 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+    <section id="features" className="bg-white">
+      <div className="py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Why Pademi for Teams?
-          </h2>
+          <h2 className="heading">Why Pademi for Teams?</h2>
           {/* <p className="text-gray-600 max-w-3xl mx-auto">
           Objectively deliver professional value with diverse web-readiness.
           Collaboratively transition wireless customer service without
@@ -27,8 +25,10 @@ export default function FeaturesSection() {
                   <span className="text-2xl">{feature.icon}</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">{feature.heading}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <h3 className="subheading">{feature.heading}</h3>
+                  <p className="subdescription text-gray-600">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -52,8 +52,10 @@ export default function FeaturesSection() {
                   <span className="text-2xl">{feature.icon}</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">{feature.heading}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <h3 className="subheading">{feature.heading}</h3>
+                  <p className="subdescription text-gray-600">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}

@@ -17,10 +17,10 @@ const DownloadAppSection = () => {
 
         <div className="flex flex-col lg:flex-row items-center justify-between relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="lg:w-1/2 mb-12 lg:mb-0 z-10">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800 leading-tight">
+            <h2 className="heading text-gray-800">
               Elevate Your Experience with Our App
             </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="description text-gray-600 leading-relaxed">
               Unlock a world of exclusive discounts and seamless bookings right
               from your pocket. Our app brings the power of Pademi to your
               fingertips, making every outing an adventure in savings.
@@ -58,8 +58,8 @@ const DownloadAppSection = () => {
               <Image
                 src={AppScreenshot}
                 alt="Pademi App Screenshot"
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "cover" }}
                 className="rounded-3xl shadow-2xl"
               />
               <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-xl p-4 transform -rotate-6 animate-float">

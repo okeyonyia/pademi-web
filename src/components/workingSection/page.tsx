@@ -4,10 +4,10 @@ import { BiChevronRight } from "react-icons/bi";
 
 export default function WorkProcess() {
   return (
-    <section className="bg-gray-100">
-      <div className="py-16 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="how-it-works" className="bg-gray-100">
+      <div className="py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">How It Works</h2>
+          <h2 className="heading">How It Works</h2>
           {/* <p className="text-gray-600 max-w-3xl mx-auto">
             Distinctively grow go forward manufactured products and optimal
             networks. Enthusiastically disseminate user-centric outsourcing
@@ -55,10 +55,8 @@ export default function WorkProcess() {
                   </>
                 )}
 
-                <h3 className="text-xl font-bold mb-4 text-center">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600 text-center text-sm">
+                <h3 className="subheading text-center">{step.title}</h3>
+                <p className="subdescription text-gray-600 text-center">
                   {step.description}
                 </p>
 

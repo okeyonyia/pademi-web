@@ -11,14 +11,12 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log("Form submitted:", formData);
   };
 
   return (
     <section className="w-full py-16 px-4 md:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-        {/* Contact Form */}
         <div className="bg-gray-100 py-8 px-4 rounded-lg shadow-sm">
           <h2 className="text-3xl font-bold mb-8">Ready to get started?</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -85,7 +83,6 @@ export default function ContactSection() {
           </form>
         </div>
 
-        {/* Business Information */}
         <div className="space-y-12 px-4">
           <div>
             <h2 className="text-4xl font-bold mb-4">
@@ -101,14 +98,14 @@ export default function ContactSection() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold">Our Headquarters</h3>
+            <h3 className="subheading">Our Headquarters</h3>
             <div className="space-y-2">
-              <p className="text-gray-600">100 Yellow House, Mn</p>
-              <p className="text-gray-600">Factory, United State, 13420</p>
+              <p className="subdescription">100 Yellow House, Mn</p>
+              <p className="subdescription">Factory, United State, 13420</p>
             </div>
             <div className="space-y-2">
-              <p className="text-gray-600">Phone: +123456789123</p>
-              <p className="text-gray-600">
+              <p className="subdescription">Phone: +123456789123</p>
+              <p className="subdescription">
                 Email:{" "}
                 <a
                   href="mailto:email@yourdomain.com"

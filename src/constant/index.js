@@ -28,7 +28,7 @@ export const features = [
     icon: "✉️",
   },
   {
-    heading: "Analytics & Feedback (optional)",
+    heading: "Analytics & Feedback",
     description:
       "Track participation, measure engagement, and refine future events.",
     iconBg: "bg-purple-50",

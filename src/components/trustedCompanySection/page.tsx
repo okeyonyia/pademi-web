@@ -58,12 +58,10 @@ export default function TrustedCompanySection() {
   return (
     <section className="w-full py-16 bg-white overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Trusted by companies
-        </h2>
-        <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12 text-lg">
-          Rapidiously morph transparent internal or "organic" sources whereas
-          resource sucking e-business. Conveniently innovate compelling
+        <h2 className="heading text-center">Trusted by companies</h2>
+        <p className="description text-center max-w-3xl mx-auto ">
+          Rapidiously morph transparent internal or &quot;organic&quot; sources
+          whereas resource sucking e-business. Conveniently innovate compelling
           internal.
         </p>
 

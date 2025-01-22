@@ -4,11 +4,9 @@ import Collapsible from "../common/collapsableItems/page";
 
 const UseCaseSection = () => {
   return (
-    <section id="use-cases" className="bg-white py-20">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Corporate Use Cases
-        </h2>
+    <section id="use-cases" className="bg-white py-24">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <h2 className="heading">Corporate Use Cases</h2>
         {/* <div className="grid md:grid-cols-2 gap-8">
           {useCasesData.map((useCase, index) => (
             <div key={index} className="flex items-start">
