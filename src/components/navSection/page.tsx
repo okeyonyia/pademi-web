@@ -83,7 +83,9 @@ const NavSection = () => {
       >
         <div className="h-full flex flex-col overflow-y-auto bg-gradient-to-br from-indigo-100 via-white to-purple-200">
           <div className="flex justify-between items-center p-4 border-b">
-            <h2 className="text-xl font-semibold text-indigo-600">Pademi</h2>
+            <Link href="/" className="text-2xl font-bold text-indigo-600">
+              Pademi
+            </Link>
             <button
               onClick={toggleSidebar}
               className="text-gray-600 focus:outline-none"

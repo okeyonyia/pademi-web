@@ -51,10 +51,10 @@ export default function AppSlider() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-12">
+    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-24">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4">Show Our Apps Screenshots</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <h2 className="heading">Show Our Apps Screenshots</h2>
+        <p className="description text-gray-600 mx-auto">
           Credibly synthesize multimedia-based networks vis-a-vis top-line
           growth strategies. Continually leverage existing worldwide interfaces.
         </p>
