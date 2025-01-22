@@ -1,47 +1,42 @@
-"use client";
+// import { webPageSchema } from "@/seo-utils/webPageSchema";
+// import { organizationSchema } from "@/seo-utils/organizationSchema";
+// import { siteNavigationElement } from "@/seo-utils/siteNavigationElement";
+// import { breadCrumbSchema } from "@/seo-utils/breadCrumbSchema";
+// import { createMetaData } from "@/seo-utils/CommonMeta";
+// import { HOST } from "@/constant";
+import HomePage from "@/components/homePage/page";
 
-import HeroSection from "@/components/heroSection/page";
-import FeaturesSection from "@/components/featuresSection/page";
-import WorkingSection from "@/components/workingSection/page";
-import UseCaseSection from "@/components/useCaseSection/page";
-import DiscountSection from "@/components/discountSection/page";
-import PricingSection from "@/components/pricingSection/page";
-import FinalCtaSection from "@/components/finalCtaSection/page";
-import FooterSection from "@/components/footerSection/page";
-import NavSection from "@/components/navSection/page";
-import DownloadAppSection from "@/components/downloadAppSection/page";
-import AppSlider from "@/components/appSlider/page";
-import TrustedCompanySection from "@/components/trustedCompanySection/page";
-import ContactSection from "@/components/contactSection/page";
+// const url = `${HOST}/`;
+// const title = `Pademi - Elevate Team Bonding with Seamless Event Planning`;
+// const description = `Discover how Pademi simplifies team bonding with effortless event planning. From company outings to department mixers, Pademi provides the tools to create meaningful connections while saving time and resources. Build stronger, happier teams today!`;
+// const keywords = `Pademi, team bonding, event planning, corporate events, employee engagement, offsites, department mixers, team-building tools, HR solutions, company outings, event coordination, workplace culture, happy hours, team events, employee interaction`;
 
-export default function PademiForTeams() {
+// export const metadata = {
+//   ...createMetaData({ title, description, keywords, url }),
+// };
+
+export default function PadmiForTeams() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-800 relative">
-      <NavSection />
-
-      <HeroSection />
-
-      <FeaturesSection />
-
-      <WorkingSection />
-
-      <AppSlider />
-
-      <DownloadAppSection />
-
-      <UseCaseSection />
-
-      <DiscountSection />
-
-      <PricingSection />
-
-      <FinalCtaSection />
-
-      <TrustedCompanySection />
-
-      <ContactSection />
-
-      <FooterSection />
-    </div>
+    <>
+      {/* <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: webPageSchema(title, description, url),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: organizationSchema() }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: siteNavigationElement() }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadCrumbSchema(title, HOST, url) }}
+      /> */}
+      <HomePage />
+    </>
   );
 }

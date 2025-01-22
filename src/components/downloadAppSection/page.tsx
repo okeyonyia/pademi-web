@@ -1,11 +1,12 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
 import { BsAndroid, BsApple } from "react-icons/bs";
 import { SiTarget } from "react-icons/si";
 import { FaUserSlash } from "react-icons/fa";
-import AppScreenshot from "@/assets/images/AppScreenshot.jpg";
 import { FiDownload, FiUsers } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
+import LazyImg from "../common/lazyImage/page";
 
 const DownloadAppSection = () => {
   return (
@@ -54,13 +55,14 @@ const DownloadAppSection = () => {
             </div>
           </div>
           <div className="lg:w-1/2 flex justify-center lg:justify-end relative z-10">
-            <div className="relative w-72 h-[560px] md:w-80 md:h-[600px]">
-              <Image
-                src={AppScreenshot}
+            <div className="relative">
+              <LazyImg
+                src={"assets/images/AppScreenshot.webp"}
                 alt="Pademi App Screenshot"
-                fill
+                placeholder={"empty"}
+                title="Pademi App Screenshot"
                 style={{ objectFit: "cover" }}
-                className="rounded-3xl shadow-2xl"
+                className="rounded-3xl shadow-2xl w-72 h-[560px] md:w-80 md:h-[600px]"
               />
               <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-xl p-4 transform -rotate-6 animate-float">
                 <SiTarget className="w-6 h-6 text-yellow-500" />

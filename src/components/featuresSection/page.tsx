@@ -1,6 +1,7 @@
-import Image from "next/image";
-import featureSection from "@/assets/images/featureSection.png";
-import { features } from "@/constant";
+"use client";
+
+import { features } from "@/constant/data";
+import LazyImg from "../common/lazyImage/page";
 
 export default function FeaturesSection() {
   return (
@@ -8,11 +9,6 @@ export default function FeaturesSection() {
       <div className="py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
         <div className="text-center mb-12">
           <h2 className="heading">Why Pademi for Teams?</h2>
-          {/* <p className="text-gray-600 max-w-3xl mx-auto">
-          Objectively deliver professional value with diverse web-readiness.
-          Collaboratively transition wireless customer service without
-          goal-oriented catalysts for change. Collaboratively.
-        </p> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -35,11 +31,12 @@ export default function FeaturesSection() {
           </div>
 
           <div className="relative h-[600px] mx-auto w-full max-w-[300px]">
-            <Image
-              src={featureSection}
+            <LazyImg
+              src={"assets/images/featureSection.webp"}
               alt="Mobile app interface"
-              fill
-              className="object-contain"
+              title="Mobile app interface"
+              placeholder={"/"}
+              className="object-contain w-full h-full"
             />
           </div>
 
