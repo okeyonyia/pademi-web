@@ -141,7 +141,6 @@ export const appSlidesData = [
     description: "Connect with other learners and share experiences",
   },
 ];
-
 export const logos = [
   {
     src: "assets/images/companies/clientsLogo01.webp",
