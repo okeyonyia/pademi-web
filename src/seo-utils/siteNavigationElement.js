@@ -9,14 +9,9 @@ export const siteNavigationElement = () => {
       target: HOST + "/search?&q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
-    name: ["Home", "Services", "Products", "Careers", "Blogs", "Hire Us"],
+    name: ["Home"],
     url: [
       HOST + "/",
-      HOST + "/services",
-      HOST + "/products",
-      HOST + "/careers",
-      HOST + "/blog",
-      HOST + "/hire-us",
     ],
   });
 };
