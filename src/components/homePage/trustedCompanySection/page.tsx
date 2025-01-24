@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import LazyImg from "../common/lazyImage/page";
+import LazyImg from "../../common/lazyImage/page";
 import { logos } from "@/constant/data";
 
 export default function TrustedCompanySection() {

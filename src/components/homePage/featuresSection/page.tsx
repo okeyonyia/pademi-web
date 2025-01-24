@@ -1,7 +1,7 @@
 "use client";
 
 import { features } from "@/constant/data";
-import LazyImg from "../common/lazyImage/page";
+import LazyImg from "../../common/lazyImage/page";
 
 export default function FeaturesSection() {
   return (

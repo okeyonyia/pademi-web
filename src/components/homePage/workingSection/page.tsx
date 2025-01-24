@@ -1,8 +1,9 @@
 "use client";
 
 import { howItWorks } from "@/constant/data";
-import PrimaryButton from "../common/primaryButton/page";
+import PrimaryButton from "../../common/primaryButton/page";
 import { BiChevronRight } from "react-icons/bi";
+import sendEmail from "@/utils/contact";
 
 export default function WorkProcess() {
   return (
@@ -68,7 +69,11 @@ export default function WorkProcess() {
             ))}
           </div>
           <div className="justify-center items-center flex">
-            <PrimaryButton title="Schedule a Demo" theme="dark" />
+            <PrimaryButton
+              onClick={sendEmail}
+              title="Schedule a Demo"
+              theme="dark"
+            />
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import { useCasesData } from "@/constant/data";
 import React from "react";
-import Collapsible from "../common/collapsableItems/page";
+import Collapsible from "../../common/collapsableItems/page";
 
 const UseCaseSection = () => {
   return (

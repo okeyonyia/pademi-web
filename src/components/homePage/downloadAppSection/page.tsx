@@ -6,7 +6,7 @@ import { SiTarget } from "react-icons/si";
 import { FaUserSlash } from "react-icons/fa";
 import { FiDownload, FiUsers } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
-import LazyImg from "../common/lazyImage/page";
+import LazyImg from "../../common/lazyImage/page";
 
 const DownloadAppSection = () => {
   return (

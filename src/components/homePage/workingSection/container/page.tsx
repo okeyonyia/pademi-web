@@ -23,7 +23,11 @@ const Container = ({
       <p className="text-gray-600 text-start">{description}</p>
 
       <div className=" mt-20 ">
-        <PrimaryButton title="Schedule a Demo" theme="dark" />
+        <PrimaryButton
+          title="Schedule a Demo"
+          theme="dark"
+          onClick={() => {}}
+        />
       </div>
     </div>
   );

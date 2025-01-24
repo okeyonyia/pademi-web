@@ -4,6 +4,7 @@ import React from "react";
 import { benefitsData } from "@/constant/data";
 import { BiCheckCircle } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
+import sendEmail from "@/utils/contact";
 
 const DiscountSection = () => {
   return (
@@ -59,7 +60,10 @@ const DiscountSection = () => {
               Join Waitlist
               <BsArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-indigo-600 transition-all duration-300 px-6 py-3 rounded-lg font-semibold text-lg flex items-center justify-center">
+            <button
+              onClick={sendEmail}
+              className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-indigo-600 transition-all duration-300 px-6 py-3 rounded-lg font-semibold text-lg flex items-center justify-center"
+            >
               Schedule Demo
               <BsArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
             </button>

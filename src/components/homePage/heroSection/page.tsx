@@ -1,16 +1,31 @@
 "use client";
 
 import React from "react";
-import PrimaryButton from "../common/primaryButton/page";
-import LazyImg from "../common/lazyImage/page";
+import PrimaryButton from "../../common/primaryButton/page";
+import LazyImg from "../../common/lazyImage/page";
 import Image from "next/image";
+import sendEmail from "@/utils/contact";
 
-const HeroSection = () => {
+export interface HeroSectionProps {
+  heading?: string;
+  description?: string;
+  imageUrl?: string;
+  bgImgUrl?: string;
+  buttonText?: string;
+}
+
+const HeroSection = ({
+  heading = "Heading",
+  description = "Description",
+  imageUrl,
+  bgImgUrl,
+  buttonText = "Get Started",
+}: HeroSectionProps) => {
   return (
     <section
       className=" min-h-[100svh] w-full bg-cover bg-center bg-no-repeat relative flex flex-1 lg:items-start"
       style={{
-        backgroundImage: `url(assets/images/heroBG1.webp)`,
+        backgroundImage: `url(${bgImgUrl})`,
         width: "100%",
         height: "100%",
       }}
@@ -19,20 +34,15 @@ const HeroSection = () => {
 
       <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-7xl py-20 flex flex-1 flex-col lg:flex-row justify-center items-center space-y-16">
         <div className="relative z-20 text-center text-white flex-1">
-          <h1 className="heading lg:text-start">
-            Elevate Your Team Bonding with Pademi
-          </h1>
-          <p className="description mx-auto lg:text-start">
-            Plan company outings, one-on-one chats, and department mixers—no
-            more messy group chats or endless email threads.
-          </p>
+          <h1 className="heading lg:text-start">{heading}</h1>
+          <p className="description mx-auto lg:text-start">{description}</p>
 
-          <PrimaryButton title="Book a Demo" />
+          <PrimaryButton onClick={sendEmail} title={buttonText} />
         </div>
 
         <div className="flex-1 z-40 flex justify-center items-center ">
           <LazyImg
-            src={"assets/images/hero.webp"}
+            src={imageUrl}
             alt="hero image"
             title="hero image"
             placeholder={"/"}

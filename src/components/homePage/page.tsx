@@ -1,49 +1,55 @@
 "use client";
 
 import React from "react";
-import NavSection from "../navSection/page";
-import HeroSection from "../heroSection/page";
-import FeaturesSection from "../featuresSection/page";
-import AppSlider from "../appSlider/page";
-import DownloadAppSection from "../downloadAppSection/page";
-import UseCaseSection from "../useCaseSection/page";
+import HeroSection from "./heroSection/page";
+import FeaturesSection from "./featuresSection/page";
+import DownloadAppSection from "./downloadAppSection/page";
+import UseCaseSection from "./useCaseSection/page";
 import FinalCtaSection from "../finalCtaSection/page";
-import DiscountSection from "../discountSection/page";
-import PricingSection from "../pricingSection/page";
-import TrustedCompanySection from "../trustedCompanySection/page";
-import ContactSection from "../contactSection/page";
-import FooterSection from "../footerSection/page";
-import WorkingSection from "../workingSection/page";
+import DiscountSection from "./discountSection/page";
+import TrustedCompanySection from "./trustedCompanySection/page";
+import WorkingSection from "./workingSection/page";
+import DefaultLayout from "../layout/page";
+import sendEmail from "@/utils/contact";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-800 relative">
-      <NavSection />
+    <DefaultLayout>
+      <>
+        <HeroSection
+          heading="Elevate Your Team Bonding with Pademi"
+          description="Plan company outings, one-on-one chats, and department mixers—no more messy group chats or endless email threads."
+          bgImgUrl="assets/images/heroBG1.webp"
+          imageUrl="assets/images/hero.webp"
+          buttonText="Book a Demo"
+        />
 
-      <HeroSection />
+        <FeaturesSection />
 
-      <FeaturesSection />
+        <WorkingSection />
 
-      <WorkingSection />
+        {/* <AppSlider /> */}
 
-      <AppSlider />
+        <DownloadAppSection />
 
-      <DownloadAppSection />
+        <UseCaseSection />
 
-      <UseCaseSection />
+        <FinalCtaSection
+          heading="Ready to Supercharge Team Spirit?"
+          description="Let Pademi handle your next team event—so you can focus on building stronger, happier employees."
+          buttonText="Contact Us"
+          buttonHandler={sendEmail}
+        />
 
-      <FinalCtaSection />
+        <DiscountSection />
 
-      <DiscountSection />
+        {/* <PricingSection /> */}
 
-      <PricingSection />
+        <TrustedCompanySection />
 
-      <TrustedCompanySection />
-
-      <ContactSection />
-
-      <FooterSection />
-    </div>
+        {/* <ContactSection /> */}
+      </>
+    </DefaultLayout>
   );
 };
 

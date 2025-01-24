@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const NavSection = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
-  const [activeLink, setActiveLink] = useState<string>("");
+  const activeLink = usePathname();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -17,8 +18,7 @@ const NavSection = () => {
     }
   };
 
-  const handleLinkClick = (link: string) => {
-    setActiveLink(link);
+  const handleLinkClick = () => {
     setIsSidebarOpen(false);
     document.body.style.overflow = "";
   };
@@ -39,14 +39,16 @@ const NavSection = () => {
   }, []);
 
   const navLinks = [
-    { url: "features", title: "Features" },
-    { url: "how-it-works", title: "How It Works" },
-    { url: "use-cases", title: "Use Cases" },
-    { url: "pricing", title: "Pricing" },
+    { url: "/", title: "Home" },
+    { url: "/business", title: "Business" },
+    { url: "#features", title: "Features" },
+    { url: "#how-it-works", title: "How It Works" },
+    { url: "#use-cases", title: "Use Cases" },
+    { url: "#pricing", title: "Pricing" },
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 w-full z-50">
+    <nav className="bg-white  shadow-md sticky top-0 w-full z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center max-w-7xl">
         <Link href="/" className="text-2xl font-bold text-indigo-600">
           Pademi
@@ -56,13 +58,13 @@ const NavSection = () => {
           {navLinks.map((link, index) => (
             <a
               key={index}
-              href={`#${link.url}`}
+              href={link.url}
               className={`transition-all duration-500 ease-in-out ${
                 activeLink === link.url
                   ? "text-indigo-600 font-medium"
                   : "hover:text-indigo-500"
               }`}
-              onClick={() => handleLinkClick(link.url)}
+              onClick={handleLinkClick}
             >
               {link.title}
             </a>
@@ -100,13 +102,13 @@ const NavSection = () => {
             {navLinks.map((link, index) => (
               <a
                 key={index}
-                href={`#${link.url}`}
-                className={`block p-4 transition-all duration-300 ${
+                href={link.url}
+                className={`block p-4 mx-4 my-2 rounded-lg transition-all duration-300 ${
                   activeLink === link.url
                     ? "bg-indigo-100 text-indigo-600 font-semibold"
                     : "hover:bg-indigo-50"
                 }`}
-                onClick={() => handleLinkClick(link.url)}
+                onClick={handleLinkClick}
               >
                 {link.title}
               </a>
