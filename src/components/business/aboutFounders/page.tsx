@@ -1,5 +1,4 @@
 import LazyImg from "@/components/common/lazyImage/page";
-import Image from "next/image";
 
 export default function AboutFoundersSection() {
   return (
