@@ -1,91 +1,64 @@
-import { BiCalendar, BiCoffee, BiLink, BiMessageSquare } from "react-icons/bi";
-import { FaUsers } from "react-icons/fa";
+"use client";
+
+import { features } from "@/constant/data";
+import LazyImg from "../../common/lazyImage/page";
 
 export default function FeaturesSection() {
-  const FeaturesData = [
-    {
-      icon: <BiCalendar className="w-6 h-6 text-purple-600" />,
-      title: "Find Events & Activities",
-      description:
-        "Explore local gatherings—from brunches to networking mixers—and join people who share your interests. Skip idle swiping; embrace real-life meetups.",
-      color: "#E9D5FF",
-    },
-    {
-      icon: <BiCoffee className="w-6 h-6 text-blue-600" />,
-      title: "1-on-1 Hangouts",
-      description:
-        "Reserve a spot, invite someone special, and sweeten it with money for transport or a thoughtful gesture. Funds stay secure until the hangout ends.",
-      color: "#DBEAFE",
-    },
-    {
-      icon: <FaUsers className="w-6 h-6 text-pink-600" />,
-      title: "User-Driven Matchmaking",
-      description:
-        "Your friends know you best—on Pademi, they can set you up for romance or business. Every match is rooted in real connections.",
-      color: "#FCE7F3",
-    },
-    {
-      icon: <BiMessageSquare className="w-6 h-6 text-indigo-600" />,
-      title: "No Endless Messaging",
-      description:
-        "Conversation is only enabled if you share an event or hangout—no more chatting that goes nowhere. Every text leads to a real-life meetup.",
-      color: "#E0E7FF",
-    },
-    {
-      icon: <BiLink className="w-6 h-6 text-violet-600" />,
-      title: "Link in Bio Integration",
-      description:
-        "Connect your IG, then add your Pademi link to your profile. That way, friends can tap to invite you directly to events—so you never miss out.",
-      color: "#EDE9FE",
-    },
-  ];
-
   return (
-    <section
-      id="features"
-      className="relative py-24 overflow-hidden bg-gradient-to-br from-purple-50 to-blue-50"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
-            Key Features & Benefits
-          </h2>
-          <p className="text-lg text-gray-600">
-            Discover how our platform transforms online connections into
-            meaningful real-life relationships
-          </p>
+    <section id="features" className="bg-white">
+      <div className="py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+        <div className="text-center mb-12">
+          <h2 className="heading">Why Pademi for Teams?</h2>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {FeaturesData.map((feature, index) => (
-            <div
-              key={index}
-              className="group relative bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden z-10"
-            >
-              <div className="flex items-center mb-6">
-                <div className="flex items-start">
-                  <div
-                    className={`p-3 rounded-xl group-hover:bg-[${feature.color}] transition-colors`}
-                    style={{ backgroundColor: feature.color }}
-                  >
-                    {feature.icon}
-                  </div>
-                  <h3 className="ml-4 subheading text-gray-900">
-                    {feature.title}
-                  </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="space-y-8">
+            {features.slice(0, 3).map((feature, index) => (
+              <div key={index} className="flex gap-4">
+                <div
+                  className={`${feature.iconBg} w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0`}
+                >
+                  <span className="text-2xl">{feature.icon}</span>
+                </div>
+                <div>
+                  <h3 className="subheading">{feature.heading}</h3>
+                  <p className="subdescription text-gray-600">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
-              <p className="subdescription text-gray-600 leading-relaxed">
-                {feature.description}
-              </p>
-              <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 w-0 group-hover:w-full transition-all duration-300" />
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="relative h-[600px] mx-auto w-full max-w-[300px]">
+            <LazyImg
+              src={"assets/images/featuresSection.webp"}
+              alt="Mobile app interface"
+              title="Mobile app interface"
+              placeholder={"/"}
+              className="object-contain w-full h-full"
+            />
+          </div>
+
+          <div className="space-y-8">
+            {features.slice(3).map((feature, index) => (
+              <div key={index} className="flex gap-4">
+                <div
+                  className={`${feature.iconBg} w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0`}
+                >
+                  <span className="text-2xl">{feature.icon}</span>
+                </div>
+                <div>
+                  <h3 className="subheading">{feature.heading}</h3>
+                  <p className="subdescription text-gray-600">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-80 h-80 md:w-96 md:h-96 bg-purple-300 rounded-full mix-blend-multiply opacity-10 animate-blob" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-2000" />
     </section>
   );
 }

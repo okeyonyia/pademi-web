@@ -23,7 +23,7 @@ const HeroSection = ({
 }: HeroSectionProps) => {
   return (
     <section
-      className=" min-h-[100svh] w-full bg-cover bg-center bg-no-repeat relative flex flex-1 lg:items-start"
+      className=" min-h-[100svh] bg-cover bg-center bg-no-repeat relative flex flex-1 lg:items-start"
       style={{
         backgroundImage: `url(${bgImgUrl})`,
         width: "100%",
@@ -40,13 +40,13 @@ const HeroSection = ({
           <PrimaryButton onClick={sendEmail} title={buttonText} />
         </div>
 
-        <div className="flex-1 z-40 flex justify-center items-center ">
+        <div className="flex-1 z-40 flex justify-center items-center">
           <LazyImg
             src={imageUrl}
             alt="hero image"
             title="hero image"
             placeholder={"/"}
-            className="rounded-3xl shadow-2xl h-[400px] md:h-[500px] lg:h-[600px] object-contain"
+            className="rounded-3xl h-[400px] md:h-[500px] lg:h-[600px] object-contain"
           />
         </div>
       </div>

@@ -112,32 +112,52 @@ export const benefitsData = [
 export const appSlidesData = [
   {
     title: "Course Management",
-    image: "assets/images/appImages/App01.webp",
+    image: "assets/images/appImages/App1.webp",
     description: "Manage your learning journey with our intuitive interface",
   },
   {
     title: "Activity Tracking",
-    image: "assets/images/appImages/App02.webp",
+    image: "assets/images/appImages/App2.webp",
     description: "Track your progress and stay motivated",
   },
   {
     title: "Social Learning",
-    image: "assets/images/appImages/App03.webp",
+    image: "assets/images/appImages/App3.webp",
     description: "Connect with other learners and share experiences",
   },
   {
     title: "Course Management",
-    image: "assets/images/appImages/App04.webp",
+    image: "assets/images/appImages/App4.webp",
     description: "Manage your learning journey with our intuitive interface",
   },
   {
     title: "Activity Tracking",
-    image: "assets/images/appImages/App05.webp",
+    image: "assets/images/appImages/App5.webp",
     description: "Track your progress and stay motivated",
   },
   {
     title: "Social Learning",
-    image: "assets/images/appImages/App06.webp",
+    image: "assets/images/appImages/App6.webp",
+    description: "Connect with other learners and share experiences",
+  },
+  {
+    title: "Social Learning",
+    image: "assets/images/appImages/App7.webp",
+    description: "Connect with other learners and share experiences",
+  },
+  {
+    title: "Social Learning",
+    image: "assets/images/appImages/App8.webp",
+    description: "Connect with other learners and share experiences",
+  },
+  {
+    title: "Social Learning",
+    image: "assets/images/appImages/App9.webp",
+    description: "Connect with other learners and share experiences",
+  },
+  {
+    title: "Social Learning",
+    image: "assets/images/appImages/App10.webp",
     description: "Connect with other learners and share experiences",
   },
 ];

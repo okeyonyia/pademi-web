@@ -8,7 +8,10 @@ import sendEmail from "@/utils/contact";
 
 const DiscountSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white overflow-hidden relative">
+    <section
+      id="pricing"
+      className="py-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white overflow-hidden relative"
+    >
       {/* Background Image :- Looks Cool Man, Dont remove it */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRoLTJWMTZoMnYxOHptNCAwaDJWMTZoLTJ2MTh6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-100" />
 

@@ -1,76 +1,82 @@
 "use client";
 
-export default function HowItWorks() {
-  const steps = [
-    {
-      number: "1",
-      title: "Join the Waitlist",
-      description: "Set up an account in seconds and share your interests.",
-      dotColor: "bg-[#ff4d4d]",
-    },
-    {
-      number: "2",
-      title: "Discover & Match",
-      description:
-        "Browse local events or let your friends match you with someone they know. Perfect for dating, networking, or just having fun.",
-      dotColor: "bg-[#ffb84d]",
-    },
-    {
-      number: "3",
-      title: "Invite & Butter-Up",
-      description:
-        "Send an invite with location and date/time, attach funds if you'd like, and finalize the hangout details.",
-      dotColor: "bg-[#4dff4d]",
-    },
-    {
-      number: "4",
-      title: "Meet Offline & Enjoy",
-      description:
-        "Chat only unlocks if you share a confirmed event or hangout, ensuring every conversation translates into real-time experiences.",
-      dotColor: "bg-[#4d4dff]",
-    },
-    {
-      number: "5",
-      title: "Add Your Link in Bio",
-      description:
-        "Place your personalized Pademi link on Instagram or other social profiles—friends can click and invite you instantly.",
-      dotColor: "bg-[#9933ff]",
-      optional: true,
-    },
-  ];
+import { howItWorks } from "@/constant/data";
+import PrimaryButton from "../../common/primaryButton/page";
+import { BiChevronRight } from "react-icons/bi";
+import sendEmail from "@/utils/contact";
 
+export default function WorkProcess() {
   return (
-    <div
-      id="how-it-works"
-      className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-purple-100 px-4 sm:px-6 lg:px-8 py-24"
-    >
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-          How It Works
-        </h1>
-        <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-200 to-purple-200 z-0" />
+    <section id="how-it-works" className="bg-gray-100">
+      <div className="py-24 px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="heading">How It Works</h2>
+        </div>
 
-          <div className="space-y-12 relative">
-            {steps.map((step, index) => (
-              <div key={index} className="flex items-start gap-6 group">
-                <div className="flex-shrink-0 select-none w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center text-2xl font-bold  border-2 border-transparent hover:border-purple-300 transition-all duration-300">
-                  {step.number}
-                </div>
-                <div className="flex-grow bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-3 h-3 rounded-full ${step.dotColor}`} />
-                    <h2 className="subheading text-gray-800">{step.title}</h2>
+        <div className="relative space-y-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-8 gap-20 relative">
+            {howItWorks.map((step, index) => (
+              <div key={index} className="relative flex flex-col items-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-24 h-24 bg-purple-700 rounded-lg flex justify-center items-center">
+                    <p className="text-4xl">{step.icon}</p>
                   </div>
-                  <p className="subdescription text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
+                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-purple-700 font-bold">
+                      {step.number}
+                    </span>
+                  </div>
                 </div>
+
+                {index < howItWorks.length - 1 && (
+                  <>
+                    {index % 2 === 0 && (
+                      <div className="hidden md:flex lg:hidden absolute top-12 left-[calc(50%+3rem)] w-[calc(100%-6rem)] items-center">
+                        <div className="h-px flex-grow relative">
+                          <div className="absolute w-full h-full flex justify-center">
+                            <div className="border-t-2 border-dashed border-gray-300 w-full"></div>
+                          </div>
+                        </div>
+                        <BiChevronRight className="text-gray-300 w-12 h-12 -ml-5" />
+                      </div>
+                    )}
+
+                    <div className="hidden lg:flex absolute top-12 left-[calc(50%+3rem)] w-[calc(100%-6rem)] items-center">
+                      <div className="h-px flex-grow relative">
+                        <div className="absolute w-full h-full flex justify-center">
+                          <div className="border-t-2 border-dashed border-gray-300 w-full"></div>
+                        </div>
+                      </div>
+
+                      <BiChevronRight className="text-gray-300 w-12 h-12 -ml-5" />
+                    </div>
+                  </>
+                )}
+
+                <h3 className="subheading text-center">{step.title}</h3>
+                <p className="subdescription text-gray-600 text-center">
+                  {step.description}
+                </p>
+
+                {index < howItWorks.length - 1 && (
+                  <div className="lg:hidden md:hidden w-px h-16 bg-gray-300 absolute -bottom-16 left-1/2 transform -translate-x-1/2">
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 rotate-90">
+                      <div className="w-3 h-3 border-t-2 border-r-2 border-gray-300 transform rotate-45"></div>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
+          <div className="justify-center items-center flex">
+            <PrimaryButton
+              onClick={sendEmail}
+              title="Schedule a Demo"
+              theme="dark"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

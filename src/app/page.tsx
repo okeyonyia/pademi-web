@@ -4,18 +4,18 @@ import { siteNavigationElement } from "@/seo-utils/siteNavigationElement";
 import { breadCrumbSchema } from "@/seo-utils/breadCrumbSchema";
 import { createMetaData } from "@/seo-utils/CommonMeta";
 import { HOST } from "@/constant";
-import HomePage from "@/components/homePage/page";
+import HomePage from "@/components/home/page";
 
 const url = `${HOST}/`;
-const title = `Pademi - Empower Your Team with Meaningful Connections`;
-const description = `Transform your team dynamics with Pademi! Simplify event planning and foster meaningful connections through memorable corporate events. Build stronger, happier teams effortlessly with tools designed for modern workplaces. Start creating extraordinary moments today!`;
-const keywords = `Pademi, team connections, event planning made easy, corporate events, team-building, employee engagement, offsite events, HR solutions, workplace happiness, meaningful team interactions, event coordination tools, workplace culture, social team events`;
+const title = `Pademi - Elevate Team Bonding with Seamless Event Planning`;
+const description = `Discover how Pademi simplifies team bonding with effortless event planning. From company outings to department mixers, Pademi provides the tools to create meaningful connections while saving time and resources. Build stronger, happier teams today!`;
+const keywords = `Pademi, team bonding, event planning, corporate events, employee engagement, offsites, department mixers, team-building tools, HR solutions, company outings, event coordination, workplace culture, happy hours, team events, employee interaction`;
 
 export const metadata = {
   ...createMetaData({ title, description, keywords, url }),
 };
 
-export default function PadmiForUsers() {
+export default function PadmiForTeams() {
   return (
     <>
       <script

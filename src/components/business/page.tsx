@@ -1,44 +1,53 @@
 "use client";
 
 import React from "react";
-import DefaultLayout from "../layout/page";
-import HeroSection from "../homePage/heroSection/page";
-import AppSlider from "./appSlider/page";
+import HeroSection from "./heroSection/page";
 import FeaturesSection from "./featuresSection/page";
-import HowItWorks from "./workingSection/page";
+import DownloadAppSection from "./downloadAppSection/page";
+import UseCaseSection from "./useCaseSection/page";
 import FinalCtaSection from "../finalCtaSection/page";
+import DiscountSection from "./discountSection/page";
+import TrustedCompanySection from "./trustedCompanySection/page";
+import WorkingSection from "./workingSection/page";
+import DefaultLayout from "../layout/page";
 import sendEmail from "@/utils/contact";
-import TestimonialSlider from "../testimonials/page";
-import AboutFoundersSection from "./aboutFounders/page";
 
 const BusinessPage = () => {
   return (
     <DefaultLayout>
       <>
         <HeroSection
-          heading="Where experiences bring us together—no endless texting, just real connections."
-          description="Discover events, plan 1-on-1 hangouts, let friends match you with someone new—and even link your IG so they can invite you right from your bio."
+          heading="Elevate Your Team Bonding with Pademi"
+          description="Plan company outings, one-on-one chats, and department mixers—no more messy group chats or endless email threads."
           bgImgUrl="assets/images/heroBG1.webp"
           imageUrl="assets/images/hero.webp"
-          buttonText="Join the Waitlist on Pademi"
+          buttonText="Book a Demo"
         />
 
         <FeaturesSection />
 
-        <HowItWorks />
+        <WorkingSection />
 
-        <AppSlider />
+        {/* <AppSlider /> */}
 
-        <AboutFoundersSection />
+        <DownloadAppSection />
 
-        <TestimonialSlider />
+        <UseCaseSection />
 
         <FinalCtaSection
-          heading="Ready to trade endless texting for real-life meetups?"
-          description="Join our waitlist at Pademi.event to get first access—where friends can match you, events are at your fingertips, and your social media bio link ensures you're always in the loop."
-          buttonText="Join the Waitlist on Pademi"
+          heading="Ready to Supercharge Team Spirit?"
+          description="Let Pademi handle your next team event—so you can focus on building stronger, happier employees."
+          buttonText="Contact Us"
           buttonHandler={sendEmail}
         />
+
+        <DiscountSection />
+
+        {/* <PricingSection /> */}
+
+        <TrustedCompanySection />
+
+        {/* <ContactSection /> */}
       </>
     </DefaultLayout>
   );

@@ -38,7 +38,13 @@ const NavSection = () => {
     };
   }, []);
 
-  const navLinks = [
+  const homeNavLinks = [
+    { url: "/", title: "Home" },
+    { url: "/business", title: "Business" },
+    { url: "#features", title: "Features" },
+    { url: "#how-it-works", title: "How It Works" },
+  ];
+  const businessNavLinks = [
     { url: "/", title: "Home" },
     { url: "/business", title: "Business" },
     { url: "#features", title: "Features" },
@@ -46,6 +52,8 @@ const NavSection = () => {
     { url: "#use-cases", title: "Use Cases" },
     { url: "#pricing", title: "Pricing" },
   ];
+
+  const navLinks = activeLink === "/business" ? businessNavLinks : homeNavLinks;
 
   return (
     <nav className="bg-white  shadow-md sticky top-0 w-full z-50">
