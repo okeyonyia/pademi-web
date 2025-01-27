@@ -2,7 +2,7 @@ import LazyImg from "@/components/common/lazyImage/page";
 
 export default function AboutFoundersSection() {
   return (
-    <section className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative min-h-screen">
+    <section className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       <div className="max-w-7xl mx-auto relative">
         <h2 className="text-4xl font-extrabold text-white sm:text-5xl text-center mb-12 tracking-tight">
           Visionaries Behind{" "}

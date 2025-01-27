@@ -42,7 +42,7 @@ export default function HowItWorks() {
   return (
     <div
       id="how-it-works"
-      className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-purple-100 px-4 sm:px-6 lg:px-8 py-24"
+      className="bg-gradient-to-br from-purple-100 via-blue-50 to-purple-100 px-4 sm:px-6 lg:px-8 py-24"
     >
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
