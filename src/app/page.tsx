@@ -7,9 +7,9 @@ import { HOST } from "@/constant";
 import HomePage from "@/components/home/page";
 
 const url = `${HOST}/`;
-const title = `Pademi - Elevate Team Bonding with Seamless Event Planning`;
-const description = `Discover how Pademi simplifies team bonding with effortless event planning. From company outings to department mixers, Pademi provides the tools to create meaningful connections while saving time and resources. Build stronger, happier teams today!`;
-const keywords = `Pademi, team bonding, event planning, corporate events, employee engagement, offsites, department mixers, team-building tools, HR solutions, company outings, event coordination, workplace culture, happy hours, team events, employee interaction`;
+const title = `Pademi - Where experiences bring us together—no endless texting, just real connections.`;
+const description = `Discover events, plan 1-on-1 hangouts, let friends match you with someone new—and even link your IG so they can invite you right from your bio. `;
+const keywords = `Pademi, event planning, corporate events, employee engagement, offsites, department mixers, team-building tools, HR solutions, company outings, event coordination, workplace culture, happy hours, team events, employee interaction`;
 
 export const metadata = {
   ...createMetaData({ title, description, keywords, url }),
