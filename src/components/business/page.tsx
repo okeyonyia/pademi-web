@@ -45,7 +45,7 @@ const BusinessPage = () => {
 
         {/* <PricingSection /> */}
 
-        <TrustedCompanySection />
+        {/* <TrustedCompanySection /> */}
 
         {/* <ContactSection /> */}
       </>

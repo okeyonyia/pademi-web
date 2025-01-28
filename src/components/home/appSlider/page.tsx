@@ -17,11 +17,11 @@ export default function AppSlider() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-24">
       <div className="text-center mb-12">
-        <h2 className="heading">Show Our Apps Screenshots</h2>
-        <p className="description text-gray-600 mx-auto">
+        <h2 className="heading">Sneak Peek</h2>
+        {/* <p className="description text-gray-600 mx-auto">
           Credibly synthesize multimedia-based networks vis-a-vis top-line
           growth strategies. Continually leverage existing worldwide interfaces.
-        </p>
+        </p> */}
       </div>
 
       <div className="relative">
