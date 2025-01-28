@@ -7,7 +7,7 @@ import DownloadAppSection from "./downloadAppSection/page";
 import UseCaseSection from "./useCaseSection/page";
 import FinalCtaSection from "../finalCtaSection/page";
 import DiscountSection from "./discountSection/page";
-import TrustedCompanySection from "./trustedCompanySection/page";
+// import TrustedCompanySection from "./trustedCompanySection/page";
 import WorkingSection from "./workingSection/page";
 import DefaultLayout from "../layout/page";
 import sendEmail from "@/utils/contact";
