@@ -8,7 +8,7 @@ import sendEmail from "@/utils/contact";
 import TestimonialSlider from "../testimonials/page";
 import FeaturesSection from "./featuresSection/page";
 import HowItWorks from "./workingSection/page";
-import AppSlider from "./appSlider/page";
+// import AppSlider from "./appSlider/page";
 import AboutFoundersSection from "./aboutFounders/page";
 
 const HomePage = () => {
@@ -27,7 +27,7 @@ const HomePage = () => {
 
         <HowItWorks />
 
-        <AppSlider />
+        {/* <AppSlider /> */}
 
         <AboutFoundersSection />
 
