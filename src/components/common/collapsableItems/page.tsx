@@ -56,12 +56,12 @@ const Collapsible = ({ items }: CollapsibleProps) => {
                         key={subIndex}
                         className="bg-white rounded-lg shadow-md overflow-hidden"
                       >
-                        <div className="relative h-48 overflow-hidden">
+                        <div className="relative overflow-hidden">
                           <LazyImg
-                            src={"/assets/images/BusinessBG.webp"}
+                            src={`/assets/images/activities${subActivity.image}`}
                             alt={subActivity.title}
                             placeholder={subActivity.title}
-                            className="object-cover"
+                            className="object-cover h-48 w-full"
                           />
                         </div>
                         <div className="p-4">
