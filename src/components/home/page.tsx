@@ -27,7 +27,7 @@ const HomePage = () => {
 
         <HowItWorks />
 
-        <AppSlider />
+        {/* <AppSlider /> */}
 
         <AboutFoundersSection />
 
