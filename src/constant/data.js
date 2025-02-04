@@ -13,13 +13,13 @@ export const features = [
     iconBg: "bg-yellow-50",
     icon: "💰",
   },
-  {
-    heading: "Internal Matchmaking",
-    description:
-      "Encourage colleagues from different departments to meet face to face.",
-    iconBg: "bg-green-50",
-    icon: "🤝",
-  },
+  // {
+  //   heading: "Internal Matchmaking",
+  //   description:
+  //     "Encourage colleagues from different departments to meet face to face.",
+  //   iconBg: "bg-green-50",
+  //   icon: "🤝",
+  // },
   {
     heading: "No Endless Messaging",
     description:

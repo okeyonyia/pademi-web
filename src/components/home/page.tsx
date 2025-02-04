@@ -10,6 +10,7 @@ import FeaturesSection from "./featuresSection/page";
 import HowItWorks from "./workingSection/page";
 // import AppSlider from "./appSlider/page";
 import AboutFoundersSection from "./aboutFounders/page";
+import UseCaseSection from "../business/useCaseSection/page";
 
 const HomePage = () => {
   return (
@@ -28,10 +29,11 @@ const HomePage = () => {
         <HowItWorks />
 
         {/* <AppSlider /> */}
-
+        <UseCaseSection />
         <AboutFoundersSection />
-
+        
         <TestimonialSlider />
+        
 
         <FinalCtaSection
           heading="Ready to trade endless texting for real-life meetups?"

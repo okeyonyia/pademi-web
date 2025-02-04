@@ -13,7 +13,7 @@ export default function FeaturesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="space-y-8">
-            {features.slice(0, 3).map((feature, index) => (
+            {features.slice(0, 2).map((feature, index) => (
               <div key={index} className="flex gap-4">
                 <div
                   className={`${feature.iconBg} w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0`}
@@ -41,7 +41,7 @@ export default function FeaturesSection() {
           </div>
 
           <div className="space-y-8">
-            {features.slice(3).map((feature, index) => (
+            {features.slice(2).map((feature, index) => (
               <div key={index} className="flex gap-4">
                 <div
                   className={`${feature.iconBg} w-12 h-12 flex items-center justify-center rounded-lg flex-shrink-0`}
