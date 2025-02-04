@@ -24,6 +24,7 @@ export default function PadmiForUsers() {
           __html: webPageSchema(title, description, url),
         }}
       />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: organizationSchema() }}
