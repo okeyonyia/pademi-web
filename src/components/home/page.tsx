@@ -31,9 +31,8 @@ const HomePage = () => {
         {/* <AppSlider /> */}
         <UseCaseSection />
         <AboutFoundersSection />
-        
+
         <TestimonialSlider />
-        
 
         <FinalCtaSection
           heading="Ready to trade endless texting for real-life meetups?"

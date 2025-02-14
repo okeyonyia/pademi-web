@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import LazyImg from "../common/lazyImage/page";
+import Image from "next/image";
 
 const NavSection = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -58,9 +60,19 @@ const NavSection = () => {
   return (
     <nav className="bg-white  shadow-md sticky top-0 w-full z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center max-w-7xl">
-        <Link href="/" className="text-2xl font-bold text-indigo-600">
-          Pademi
-        </Link>
+        <div className="">
+          <Link href="/" className="text-2xl font-bold text-indigo-600">
+            <LazyImg
+              src="assets/LOGO.webp"
+              alt="LOGO"
+              title="LOGO"
+              placeholder={"/"}
+              width={60}
+              height={60}
+              className="rounded-3xl object-contain "
+            />
+          </Link>
+        </div>
 
         <div className="hidden lg:flex space-x-6">
           {navLinks.map((link, index) => (
@@ -93,11 +105,22 @@ const NavSection = () => {
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         } lg:hidden`}
       >
-        <div className="h-full flex flex-col overflow-y-auto bg-gradient-to-br from-indigo-100 via-white to-purple-200">
+        <div className="h-full flex flex-col overflow-y-auto">
           <div className="flex justify-between items-center p-4 border-b">
-            <Link href="/" className="text-2xl font-bold text-indigo-600">
-              Pademi
-            </Link>
+            <div className="">
+              <Link href="/" className="text-2xl font-bold text-indigo-600">
+                <LazyImg
+                  src="assets/LOGO.webp"
+                  alt="LOGO"
+                  title="LOGO"
+                  placeholder={"/"}
+                  width={60}
+                  height={60}
+                  className="rounded-3xl object-contain"
+                />
+              </Link>
+            </div>
+
             <button
               onClick={toggleSidebar}
               className="text-gray-600 focus:outline-none"

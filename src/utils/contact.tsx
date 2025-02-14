@@ -1,7 +1,6 @@
 const sendEmail = () => {
-  const companyEmail = "example@company.com";
-  const defaultMessage =
-    "Hello, I would like to discuss matters related to pademi assistance. Please let me know how we can proceed.";
+  const companyEmail = "okey@octinnovations.com";
+  const defaultMessage = "Please submit this email to join our waiting list.";
   const subjectMessage = "Inquiry from Pademi Website";
 
   const email = encodeURIComponent(companyEmail);
