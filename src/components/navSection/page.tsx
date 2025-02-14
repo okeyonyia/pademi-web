@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import LazyImg from "../common/lazyImage/page";
-import Image from "next/image";
 
 const NavSection = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
