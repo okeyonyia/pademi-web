@@ -58,7 +58,7 @@ const PrivacyPolicyPage = () => {
           <li>
             <strong>Cookies & Tracking Technologies:</strong> cookies, web
             beacons, and similar technologies to analyze trends, administer the
-            website, and track user's movements
+            website, and track user&apos;s movements
           </li>
         </ul>
 
