@@ -6,7 +6,7 @@ import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 const FooterSection = () => {
   const links = [
-    { href: "#", label: "Privacy Policy" },
+    { href: "/legal", label: "Privacy Policy" },
     { href: "#", label: "Terms & Conditions" },
     { href: "#", label: "Contact Us" },
   ];
