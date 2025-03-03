@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.wazid.meetminds",
+            "sha256_cert_fingerprints": [
+                "98:DF:51:06:95:DE:F6:95:56:BD:4E:32:8D:22:D9:07:AD:FE:A6:64:EC:E1:12:25:A5:F1:A4:73:5B:B4:7A:C7"
+            ]
+        }
+    }
+]
