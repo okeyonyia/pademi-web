@@ -1,4 +1,12 @@
 {
+    "redirects": [
+        {
+            "source": "/.well-known/assetlinks.json",
+            "destination": "/public/assetlinks.json",
+            "permanent": false,
+            "statusCode": 200
+        }
+    ],
     "headers": [
         {
             "source": "/.well-known/assetlinks.json",
