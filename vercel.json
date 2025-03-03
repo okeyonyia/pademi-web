@@ -1,11 +1,25 @@
 {
-    "routes": [
+    "headers": [
         {
-            "src": "/.well-known/assetlinks.json",
-            "dest": "/public/assetlinks.json",
-            "headers": {
-                "Content-Type": "application/json"
-            }
+            "source": "/.well-known/assetlinks.json",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
+                },
+                {
+                    "key": "Pragma",
+                    "value": "no-cache"
+                },
+                {
+                    "key": "Expires",
+                    "value": "0"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
         }
     ]
 }
