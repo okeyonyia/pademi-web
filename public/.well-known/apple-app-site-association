@@ -1,0 +1,12 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appID": "RB8Y5GUF99.com.wazid.meetminds",
+                "paths": [
+                    "/events/*"
+                ]
+            }
+        ]
+    }
+}
