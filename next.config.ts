@@ -2,18 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-};
 
-export default nextConfig;
-
-module.exports = {
   async redirects() {
     return [
       {
-        source: "/events",
+        source: "/events/:path*", // Matches /events and /events/anything
         destination: "/download-app",
         permanent: false,
       },
     ];
   },
 };
+
+module.exports = nextConfig;
