@@ -7,7 +7,8 @@
             "namespace": "android_app",
             "package_name": "com.wazid.meetminds",
             "sha256_cert_fingerprints": [
-                "98:DF:51:06:95:DE:F6:95:56:BD:4E:32:8D:22:D9:07:AD:FE:A6:64:EC:E1:12:25:A5:F1:A4:73:5B:B4:7A:C7"
+                "98:DF:51:06:95:DE:F6:95:56:BD:4E:32:8D:22:D9:07:AD:FE:A6:64:EC:E1:12:25:A5:F1:A4:73:5B:B4:7A:C7",
+                "D7:6E:1D:6E:5C:BE:DD:4C:AB:70:99:B0:F4:37:5F:B8:56:81:E2:6F:0D:E3:B4:3E:F2:B2:CF:B3:70:1E:72:0C"
             ]
         }
     }
