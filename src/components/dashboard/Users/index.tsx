@@ -1,0 +1,145 @@
+'use client';
+
+import { UserServices } from '@/app/api/users/route';
+import LazyImg from '@/components/common/lazyImage/page';
+import { useEffect, useState } from 'react';
+
+export interface User {
+    _id: string;
+    email: string;
+    profile?: {
+        full_name?: string;
+        phone_number?: string;
+        bio?: string;
+        profession?: string;
+        interests?: string[];
+        profile_pictures?: string[];
+        is_approved?: ApprovedByAdminStatus;
+        date_of_birth?:string
+    };
+}
+export enum ApprovedByAdminStatus {
+    PENDING = 'pending',
+    APPROVED = 'approved',
+    REJECTED = 'rejected',
+  }
+
+const UsersData: React.FC = () => {
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const data = await UserServices.getAllUsers();
+                setUsers(data);
+            } catch (err) {
+                setError('Failed to fetch users');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+    
+
+    const handleStatusChange = async (email: string,date_of_birth:string, status: ApprovedByAdminStatus) => {
+        const updateStatus ={
+            email,date_of_birth,status
+        }
+        try {
+            console.log('Updating status for user:', updateStatus); // Debug log
+            const updatedUser = await UserServices.updateProfileStatus(updateStatus);
+            console.log('Updated user:', updatedUser); // Debug log
+
+            if (updatedUser) {
+                setUsers(prevUsers => prevUsers.map(user => 
+                    user._id === updatedUser._id ? { ...user, profile: { ...user.profile, is_approved: status } } : user
+                ));
+            }
+        } catch (err) {
+            console.error('Failed to update status', err);
+        }
+    };
+
+    if (loading) return  <div className="h-screen flex justify-center items-center">
+    <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+  </div>;
+    if (error) return <p className='max-h-screen'>{error}</p>;
+    if (users.length === 0) return <p className='max-h-screen'>No users found.</p>;
+
+    const renderTable = (title: string, status: 'approved' | 'pending' | 'rejected') => {
+        const filteredUsers = users.filter(user => user.profile?.is_approved === status);
+        return (
+            <div className="mb-8">
+                <h2 className="text-xl font-bold mb-2">{title}</h2>
+                <div className="overflow-x-auto">
+                    <table className="w-full border-collapse border border-gray-300">
+                        <thead>
+                            <tr className="bg-gray-200">
+                                <th className="border border-gray-300 px-4 py-2">Profile Picture</th>
+                                <th className="border border-gray-300 px-4 py-2">Full Name</th>
+                                <th className="border border-gray-300 px-4 py-2">Email</th>
+                                <th className="border border-gray-300 px-4 py-2">Phone</th>
+                                <th className="border border-gray-300 px-4 py-2">Profession</th>
+                                {status === 'pending' && <th className="border border-gray-300 px-4 py-2">Actions</th>}
+                                {status === 'approved' && <th className="border border-gray-300 px-4 py-2">Status</th>}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredUsers.length > 0 ? (
+                                filteredUsers.map(user => (
+                                    <tr key={user._id} className="text-center">
+                                        <td className="border border-gray-300 px-4 py-2">
+                                            {user.profile?.profile_pictures?.length ? (
+                                                <LazyImg 
+                                                    src={user.profile.profile_pictures[0]} 
+                                                    alt="Profile" 
+                                                    className="w-12 h-12 rounded-full mx-auto"
+                                                />
+                                            ) : (
+                                                "N/A"
+                                            )}
+                                        </td>
+                                        <td className="border border-gray-300 px-4 py-2">{user.profile?.full_name || "N/A"}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{user.email}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{user.profile?.phone_number || "N/A"}</td>
+                                        <td className="border border-gray-300 px-4 py-2">{user.profile?.profession || "N/A"}</td>
+                                        {status === 'pending' && (
+                                            <td className="border border-gray-300 px-4 py-2">
+                                                <button onClick={() => handleStatusChange(user.email,String(user.profile?.date_of_birth),ApprovedByAdminStatus.APPROVED)} className="bg-green-500 text-white px-3 py-1 rounded mr-2">Approve</button>
+                                                <button onClick={() => handleStatusChange(user.email,String(user.profile?.date_of_birth), ApprovedByAdminStatus.REJECTED)} className="bg-red-500 text-white px-3 py-1 rounded">Reject</button>
+                                            </td>
+                                        )}
+                                        {status === 'approved' && (
+                                            <td className="border border-gray-300 px-4 py-2 text-green-600 font-bold">Approved</td>
+                                        )}
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={status === 'pending' ? 8 : 7} className="border border-gray-300 px-4 py-2 text-center">
+                                        No users found.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="p-6 text-black">
+            <h1 className="text-2xl font-bold mb-4">Users List</h1>
+            {renderTable("Approved Users", "approved")}
+            {renderTable("Pending Users", "pending")}
+            {renderTable("Rejected Users", "rejected")}
+        </div>
+    );
+};
+
+export default UsersData;
