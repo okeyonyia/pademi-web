@@ -2,7 +2,7 @@ import Notification from "../notification";
 
 export default class HttpClient {
 
-    static BASE_URL = 'http://localhost:8000/api/v1';
+    static BASE_URL = 'https://pademi.vercel.app/api/v1';
     // Static method to handle errors
     static handleErrors(e: unknown): void {
         if (e instanceof Error) {
