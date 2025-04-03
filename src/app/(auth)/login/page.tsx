@@ -1,23 +1,45 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/firebaseConfig/firebaseConfig';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { getIdTokenResult, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebaseConfig/firebaseConfig";
+import { useRouter } from "next/navigation";
+import Http from "@/lib/http-client";
+import CustomLoader from "@/components/common/loader/page";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push('/dashboard/users');
+      setLoading(true);
+      const response = await signInWithEmailAndPassword(auth, email, password);
+
+      if (response.user) {
+        // Fetch the user's token result to check custom claims
+        const idTokenResult = await getIdTokenResult(response.user);
+
+        if (idTokenResult.claims.admin) {
+          const token = await response.user.getIdToken();
+          Http.setToken(token);
+
+          setError("");
+          router.push("/dashboard/users"); // Redirect only if user is admin
+        } else {
+          setError("❌ Access Denied: You are not an admin.");
+          await auth.signOut(); // Sign out non-admin users
+        }
+      }
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,18 +63,23 @@ export default function LoginPage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Welcome Back
+          </h1>
           <p className="text-gray-600">Sign in to access your dashboard</p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           {error && (
             <div className="p-3 text-red-700 bg-red-50 rounded-md text-sm text-center">
-              {error.replace('Firebase: ', '').replace(/\(auth.*\)\.?/, '')}
+              {error.replace("Firebase: ", "").replace(/\(auth.*\)\.?/, "")}
             </div>
           )}
           <div className="rounded-md shadow-sm space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Email address
               </label>
               <input
@@ -68,7 +95,10 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Password
               </label>
               <input
@@ -90,11 +120,10 @@ export default function LoginPage() {
               type="submit"
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
             >
-              Sign in
+              {loading ? <CustomLoader /> : "Sign in"}
             </button>
           </div>
         </form>
-      
       </div>
     </div>
   );

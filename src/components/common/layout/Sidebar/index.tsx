@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, Home, Settings, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import Link from "next/link";
 import LazyImg from "../../lazyImage/page";
 import { signOut } from "firebase/auth";
@@ -18,9 +18,9 @@ const Sidebar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      router.push('/');
+      router.push("/");
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error("Error logging out:", error);
     }
   };
 
@@ -34,7 +34,10 @@ const Sidebar = () => {
       >
         {/* Sidebar Header */}
         <div className="flex justify-start gap-x-3 items-center mb-6">
-          <Link href="/dashboard/home" className="text-2xl font-bold text-indigo-600">
+          <Link
+            href="/dashboard/home"
+            className="text-2xl font-bold text-indigo-600"
+          >
             <LazyImg
               src="assets/LOGO.webp"
               alt="LOGO"
@@ -55,7 +58,11 @@ const Sidebar = () => {
         {/* Sidebar Items */}
         <nav className="flex flex-col gap-4 h-[calc(100vh-80px)] overflow-y-auto">
           {[
-            { href: "/dashboard/users", label: "Users", icon: <User size={20} /> },
+            {
+              href: "/dashboard/users",
+              label: "Users",
+              icon: <User size={20} />,
+            },
           ].map((item) => (
             <Link
               key={item.href}
@@ -69,7 +76,7 @@ const Sidebar = () => {
             </Link>
           ))}
 
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-3 p-3 rounded-lg hover:bg-red-600 mt-auto text-left w-full"
           >
@@ -81,7 +88,10 @@ const Sidebar = () => {
 
       {/* Overlay for mobile */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" onClick={toggleSidebar}></div>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={toggleSidebar}
+        ></div>
       )}
 
       {/* Toggle Button */}

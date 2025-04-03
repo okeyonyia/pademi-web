@@ -36,7 +36,7 @@ export default function Users() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: breadCrumbSchema(title, HOST, url) }}
       />
-       <UsersData/>
+      <UsersData />
     </>
   );
 }
