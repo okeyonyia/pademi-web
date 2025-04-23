@@ -1,6 +1,6 @@
 "use client";
 
-import { UserServices } from "@/app/api/users/route";
+import { UserServices } from "@/services/users/route";
 import LazyImg from "@/components/common/lazyImage/page";
 import CustomLoader from "@/components/common/loader/page";
 import { useEffect, useState } from "react";
