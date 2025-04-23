@@ -120,7 +120,7 @@ class HttpClient {
    * @param data The data to be sent in the POST request.
    * @returns A Promise that resolves with the response data of type R, or null if an error occurs.
    */
-  async delete<_, R>(url: string): Promise<R | null> {
+  async delete<R>(url: string): Promise<R | null> {
     try {
       const response: AxiosResponse<R> = await this.axiosInstance.delete(url);
       return response.data;
