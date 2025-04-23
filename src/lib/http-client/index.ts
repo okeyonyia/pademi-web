@@ -3,6 +3,8 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 /**
  * HttpClient class provides methods to perform HTTP requests.
  */
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class HttpClient {
   private axiosInstance = axios.create({
     // baseURL: "http://192.168.1.15:8000/api/v1", // Local URL

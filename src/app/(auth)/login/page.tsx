@@ -36,8 +36,9 @@ export default function LoginPage() {
           await auth.signOut(); // Sign out non-admin users
         }
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error.message);
+      setError(error?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

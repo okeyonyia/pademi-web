@@ -83,7 +83,7 @@ const UsersData: React.FC = () => {
         console.log("Data => ", data);
         setUsers(data);
       } catch (err) {
-        setError("Failed to fetch users");
+        setError(`Failed to fetch users ${err}`);
       } finally {
         setLoading(false);
       }

@@ -33,7 +33,7 @@ export default function NotFoundPage() {
         </div>
         <h1 className="text-3xl font-bold text-gray-900">Page Not Found</h1>
         <p className="text-gray-600">
-          Oops! We couldn't find what you were looking for.
+          Oops! We couldn&apos;t find what you were looking for.
         </p>
         <button
           onClick={() => router.push("/")}
