@@ -62,7 +62,7 @@ const NavSection = () => {
         <div className="">
           <Link href="/" className="text-2xl font-bold text-indigo-600">
             <LazyImg
-              src="assets/LOGO.webp"
+              src="/assets/LOGO.webp"
               alt="LOGO"
               title="LOGO"
               placeholder={"/"}
@@ -109,7 +109,7 @@ const NavSection = () => {
             <div className="">
               <Link href="/" className="text-2xl font-bold text-indigo-600">
                 <LazyImg
-                  src="assets/LOGO.webp"
+                  src="/assets/LOGO.webp"
                   alt="LOGO"
                   title="LOGO"
                   placeholder={"/"}
