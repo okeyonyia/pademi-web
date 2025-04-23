@@ -80,6 +80,7 @@ const UsersData: React.FC = () => {
     const fetchUsers = async () => {
       try {
         const data = await UserServices.getAllUsers();
+        console.log("Data => ", data);
         setUsers(data);
       } catch (err) {
         setError("Failed to fetch users");

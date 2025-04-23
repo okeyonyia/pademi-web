@@ -1,14 +1,16 @@
 import { ApprovedByAdminStatus, User } from "@/components/dashboard/Users";
-import HttpClient from "@/lib/http-client";
+import Http from "@/lib/http-client";
 
 export class UserServices {
   static async getAllUsers(): Promise<User[]> {
     try {
-      const response = await HttpClient.get<{
+      const response = await Http.get<{
         statusCode: number;
         message: string;
         data: User[];
       }>("/user");
+
+      console.log("Response from backend => ", response);
       return response?.data ?? []; // ✅ Ensures it always returns an array
     } catch (err) {
       console.error("Error fetching users:", err);
@@ -19,7 +21,7 @@ export class UserServices {
   static async getUserById(id: string): Promise<User | null> {
     try {
       console.log("Fetching user with ID:", id); // Debug log
-      const response = await HttpClient.get<{
+      const response = await Http.get<{
         statusCode: number;
         message: string;
         data: User;
@@ -42,7 +44,7 @@ export class UserServices {
     status: ApprovedByAdminStatus;
   }): Promise<User | null> {
     try {
-      const response = await HttpClient.patch<
+      const response = await Http.patch<
         { email: string; date_of_birth: string; status: ApprovedByAdminStatus },
         { statusCode: number; message: string; data: User }
       >("/profile/update-status", { email, date_of_birth, status });
@@ -63,7 +65,7 @@ export class UserServices {
     event_creation_approval: ApprovedByAdminStatus;
   }) {
     try {
-      const response = await HttpClient.patch<
+      const response = await Http.patch<
         { event_creation_approval: ApprovedByAdminStatus },
         { statusCode: number; message: string; data: User["profile"] }
       >(`/profile/${id}`, { event_creation_approval });

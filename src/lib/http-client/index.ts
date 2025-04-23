@@ -7,7 +7,7 @@ class HttpClient {
   private axiosInstance = axios.create({
     // baseURL: "http://192.168.1.15:8000/api/v1", // Local URL
     baseURL: "https://pademi.vercel.app/api/v1", // Set Prod. base URL
-    timeout: 15000, // Set timeout (optional)
+    // timeout: 15000, // Set timeout (optional)
   });
 
   constructor() {
