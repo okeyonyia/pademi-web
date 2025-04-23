@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://pademi.vercel.app/api/:path*",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
