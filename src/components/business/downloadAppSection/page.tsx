@@ -27,10 +27,10 @@ const DownloadAppSection = () => {
               fingertips, making every outing an adventure in savings.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button className="flex items-center justify-center bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg">
+              <a href="https://apps.apple.com/in/app/pademi/id6742840788" target="_blank" className="flex items-center justify-center bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg">
                 <BsApple className="w-6 h-6 mr-2" />
                 <span>Download for iOS</span>
-              </button>
+              </a>
               <button className="flex items-center justify-center bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 transform hover:scale-105 shadow-lg">
                 <BsAndroid className="w-6 h-6 mr-2" />
                 <span>Download for Android</span>
