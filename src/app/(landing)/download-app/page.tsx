@@ -8,7 +8,7 @@ import DownloadApp from "@/components/downloadApp/page";
 
 const url = `${HOST}/download-app`;
 const title = `Download Pademi App - Secure & Private`;
-const description = `Get the Pademi app now! Enjoy seamless connectivity with top-notch privacy. Available for Android, iOS, and Web. Download today!`;
+const description = `Where experiences bring us together—no endless texting, just real connections.`;
 const keywords = `Pademi app download, secure app, private communication, Android app, iOS app, web app, online safety, data privacy`;
 export const metadata = {
   ...createMetaData({ title, description, keywords, url }),
