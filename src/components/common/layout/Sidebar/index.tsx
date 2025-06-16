@@ -7,6 +7,7 @@ import Link from "next/link";
 import LazyImg from "../../lazyImage/page";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebaseConfig/firebaseConfig";
+import { BiParty } from "react-icons/bi";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,11 @@ const Sidebar = () => {
               href: "/dashboard/users",
               label: "Users",
               icon: <User size={20} />,
+            },
+            {
+              href: "/dashboard/events",
+              label: "Events",
+              icon: <BiParty size={20} />,
             },
           ].map((item) => (
             <Link
