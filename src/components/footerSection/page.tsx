@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { FaInstagram, FaTwitter, FaLinkedin, FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaTiktok } from "react-icons/fa";
 
 const FooterSection = () => {
   const links = [
