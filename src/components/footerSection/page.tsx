@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaLinkedin, FaTiktok } from "react-icons/fa";
 
 const FooterSection = () => {
   const links = [
@@ -13,12 +13,25 @@ const FooterSection = () => {
 
   const socialIcons = [
     {
-      href: "#",
+      href: "https://instagram.com/pademi.events",
       icon: <FaInstagram className="w-6 h-6" />,
       label: "Instagram",
     },
-    { href: "#", icon: <FaTwitter className="w-6 h-6" />, label: "Twitter/X" },
-    { href: "#", icon: <FaLinkedin className="w-6 h-6" />, label: "LinkedIn" },
+    {
+      href: "https://x.com/@PademiEvents", // Twitter/X
+      icon: <FaTwitter className="w-6 h-6" />,
+      label: "Twitter/X",
+    },
+    // {
+    //   href: "https://linkedin.com/in/pademi.events",
+    //   icon: <FaLinkedin className="w-6 h-6" />,
+    //   label: "LinkedIn",
+    // },
+    {
+      href: "https://tiktok.com/@pademi.events",
+      icon: <FaTiktok className="w-6 h-6" />,
+      label: "TikTok",
+    },
   ];
 
   return (
