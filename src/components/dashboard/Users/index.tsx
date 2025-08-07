@@ -1,9 +1,13 @@
-"use client";
+'use client';
 
-import { UserServices } from "@/services/users/route";
-import LazyImg from "@/components/common/lazyImage/page";
-import CustomLoader from "@/components/common/loader/page";
-import { useEffect, useState } from "react";
+import { UserServices } from '@/services/users/route';
+import { useEffect, useState, useMemo } from 'react';
+import Table from '@/components/common/Table';
+import Pagination from '@/components/common/Pagination';
+import Modal from '@/components/common/Modal';
+import UserDetail from './UserDetail';
+import SafeImage from '@/components/common/SafeImage';
+import CustomSelect from '@/components/common/CustomSelect';
 
 export interface User {
   _id: string;
@@ -22,65 +26,249 @@ export interface User {
   };
 }
 export enum ApprovedByAdminStatus {
-  PENDING = "pending",
-  APPROVED = "approved",
-  REJECTED = "rejected",
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  REJECTED = 'rejected',
 }
 
 const UsersData: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState<string | null>(null);
-
   const [loading, setLoading] = useState<boolean>(true);
-  const [statusLoading, setStatusLoading] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
-  const [selectedStatuses, setSelectedStatuses] = useState<
-    Record<string, string>
-  >({});
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const saveStatusChange = async (userId: string) => {
-    if (!selectedStatuses[userId]) return;
+  // Filter state
+  const [statusFilter, setStatusFilter] = useState<
+    'all' | ApprovedByAdminStatus
+  >('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
-    try {
-      setStatusLoading(true);
-      await handleEventAccessChange(
-        userId,
-        selectedStatuses[userId] as ApprovedByAdminStatus
+
+  // Filtered and paginated data
+  const filteredUsers = useMemo(() => {
+    let filtered = users;
+
+    // Apply status filter
+    if (statusFilter !== 'all') {
+      filtered = filtered.filter(
+        (user) => user.profile?.is_approved === statusFilter
       );
+    }
 
-      setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-          user.profile?._id === userId
-            ? {
-                ...user,
-                profile: {
-                  ...user.profile,
-                  event_creation_approval: selectedStatuses[
-                    userId
-                  ] as ApprovedByAdminStatus, // Ensure correct type
-                } as User["profile"], // ✅ Type assertion to match the User type
-              }
-            : user
-        )
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (user) =>
+          user.email.toLowerCase().includes(query) ||
+          user.profile?.full_name?.toLowerCase().includes(query) ||
+          user.profile?.phone_number?.includes(query) ||
+          user.profile?.profession?.toLowerCase().includes(query)
       );
+    }
 
-      setSelectedStatuses((prev) => {
-        const newState = { ...prev };
-        delete newState[userId]; // Remove from pending changes after saving
-        return newState;
-      });
-    } catch (error) {
-      console.error("Failed to update event access status:", error);
-    } finally {
-      setStatusLoading(false);
+    return filtered;
+  }, [users, statusFilter, searchQuery]);
+
+  const paginatedUsers = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredUsers.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredUsers, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+
+  const handleRowClick = (user: User) => {
+    setSelectedUser(user);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedUser(null);
+  };
+
+  const getStatusConfig = (status: string) => {
+    switch (status) {
+      case 'approved':
+        return {
+          bgGradient: 'from-emerald-500 to-teal-600',
+          bgLight: 'from-emerald-50 to-teal-50',
+          border: 'border-emerald-200',
+          text: 'text-emerald-800',
+          icon: '✅',
+          badge:
+            'bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 border-emerald-200',
+        };
+      case 'pending':
+        return {
+          bgGradient: 'from-amber-500 to-orange-600',
+          bgLight: 'from-amber-50 to-orange-50',
+          border: 'border-amber-200',
+          text: 'text-amber-800',
+          icon: '⏳',
+          badge:
+            'bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-200',
+        };
+      case 'rejected':
+        return {
+          bgGradient: 'from-red-500 to-pink-600',
+          bgLight: 'from-red-50 to-pink-50',
+          border: 'border-red-200',
+          text: 'text-red-800',
+          icon: '❌',
+          badge:
+            'bg-gradient-to-r from-red-100 to-pink-100 text-red-800 border-red-200',
+        };
+      default:
+        return {
+          bgGradient: 'from-gray-500 to-slate-600',
+          bgLight: 'from-gray-50 to-slate-50',
+          border: 'border-gray-200',
+          text: 'text-gray-800',
+          icon: '👤',
+          badge:
+            'bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border-gray-200',
+        };
     }
   };
+
+  // Table columns configuration
+  const columns = [
+    {
+      key: 'profile_picture',
+      label: 'User',
+      width: '280px',
+      render: (value: unknown, user: User) => (
+        <div className='flex items-center gap-3'>
+          <div className='w-12 h-12 flex-shrink-0'>
+            <SafeImage
+              src={user.profile?.profile_pictures?.[0] || ''}
+              alt={user.profile?.full_name || 'User'}
+              width={48}
+              height={48}
+              className='rounded-full ring-2 ring-white shadow-md overflow-hidden'
+              fallbackInitial={
+                user.profile?.full_name?.charAt(0)?.toUpperCase() || '?'
+              }
+              gradientClasses='from-purple-500 to-pink-500'
+            />
+          </div>
+          <div className='min-w-0 flex-1'>
+            <div className='font-semibold text-gray-900 truncate'>
+              {user.profile?.full_name || 'No Name'}
+            </div>
+            <div className='text-sm text-gray-500 truncate'>{user.email}</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: 'profile.phone_number',
+      label: 'Contact',
+      width: '180px',
+      render: (value: unknown, user: User) => (
+        <div>
+          <div className='text-gray-700 truncate'>
+            {user.profile?.phone_number || 'Not provided'}
+          </div>
+          <div className='text-xs text-gray-500 truncate'>
+            {user.profile?.profession || 'Not specified'}
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: 'profile.is_approved',
+      label: 'Profile Status',
+      width: '140px',
+      sortable: true,
+      render: (value: unknown, user: User) => {
+        const status = user.profile?.is_approved || 'pending';
+        const config = getStatusConfig(status);
+        return (
+          <span
+            className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-semibold ${config.badge} border whitespace-nowrap`}
+          >
+            {config.icon} {status}
+          </span>
+        );
+      },
+    },
+    {
+      key: 'profile.event_creation_approval',
+      label: 'Event Access',
+      width: '140px',
+      sortable: true,
+      render: (value: unknown, user: User) => {
+        const status = user.profile?.event_creation_approval || 'pending';
+        const config = getStatusConfig(status);
+        return (
+          <span
+            className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium ${config.badge} border whitespace-nowrap`}
+          >
+            {config.icon} {status}
+          </span>
+        );
+      },
+    },
+    {
+      key: 'profile.interests',
+      label: 'Interests',
+      width: '200px',
+      render: (value: unknown, user: User) => (
+        <div className='flex flex-wrap gap-1'>
+          {user.profile?.interests && user.profile.interests.length > 0 ? (
+            <>
+              {user.profile.interests.slice(0, 2).map((interest, index) => (
+                <span
+                  key={index}
+                  className='px-2 py-1 bg-purple-100 text-purple-800 rounded-md text-xs font-medium'
+                >
+                  {interest}
+                </span>
+              ))}
+              {user.profile.interests.length > 2 && (
+                <span className='px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium'>
+                  +{user.profile.interests.length - 2}
+                </span>
+              )}
+            </>
+          ) : (
+            <span className='text-xs text-gray-400'>None specified</span>
+          )}
+        </div>
+      ),
+    },
+    {
+      key: 'actions',
+      label: 'Actions',
+      width: '120px',
+      render: (value: unknown, user: User) => (
+        <div className='flex justify-end'>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRowClick(user);
+            }}
+            className='px-3 py-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg text-xs font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 whitespace-nowrap'
+          >
+            View Details
+          </button>
+        </div>
+      ),
+    },
+  ];
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const data = await UserServices.getAllUsers();
-        console.log("Data => ", data);
+        console.log('Data => ', data);
         setUsers(data);
       } catch (err) {
         setError(`Failed to fetch users ${err}`);
@@ -103,9 +291,9 @@ const UsersData: React.FC = () => {
       status,
     };
     try {
-      console.log("Updating status for user:", updateStatus); // Debug log
+      console.log('Updating status for user:', updateStatus); // Debug log
       const updatedUser = await UserServices.updateProfileStatus(updateStatus);
-      console.log("Updated user:", updatedUser); // Debug log
+      console.log('Updated user:', updatedUser); // Debug log
 
       if (updatedUser) {
         setUsers((prevUsers) =>
@@ -117,7 +305,7 @@ const UsersData: React.FC = () => {
         );
       }
     } catch (err) {
-      console.error("Failed to update status", err);
+      console.error('Failed to update status', err);
     }
   };
 
@@ -150,178 +338,248 @@ const UsersData: React.FC = () => {
         );
       }
     } catch (err) {
-      console.error("Failed to update event access", err);
+      console.error('Failed to update event access', err);
     }
   };
 
   if (loading)
     return (
-      <div className="h-screen flex justify-center items-center">
-        <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
-      </div>
-    );
-
-  if (error) return <p className="max-h-screen">{error}</p>;
-
-  if (users.length === 0)
-    return <p className="max-h-screen">No users found.</p>;
-
-  const renderTable = (
-    title: string,
-    status: "approved" | "pending" | "rejected"
-  ) => {
-    const filteredUsers = users.filter(
-      (user) => user.profile?.is_approved === status
-    );
-    return (
-      <div className="mb-8">
-        <h2 className="text-xl font-bold mb-2">{title}</h2>
-        <div className="overflow-auto">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="border border-gray-300 px-4 py-2">
-                  Profile Picture
-                </th>
-                <th className="border border-gray-300 px-4 py-2">Full Name</th>
-                <th className="border border-gray-300 px-4 py-2">Email</th>
-                <th className="border border-gray-300 px-4 py-2">Phone</th>
-                <th className="border border-gray-300 px-4 py-2">Profession</th>
-                {status === "pending" && (
-                  <th className="border border-gray-300 px-4 py-2">Actions</th>
-                )}
-                {status === "approved" && (
-                  <>
-                    <th className="border border-gray-300 px-4 py-2">Status</th>
-                    <th className="border border-gray-300 px-4 py-2">
-                      Create Event Access
-                    </th>
-                  </>
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {filteredUsers.length > 0 ? (
-                filteredUsers.map((user: User) => (
-                  <tr key={user._id} className="text-center">
-                    <td className="border border-gray-300 px-4 py-2">
-                      {user.profile?.profile_pictures?.length ? (
-                        <LazyImg
-                          src={user.profile.profile_pictures[0]}
-                          alt="Profile"
-                          placeholder={user.profile.profile_pictures[0]}
-                          className="w-12 h-12 rounded-full mx-auto"
-                        />
-                      ) : (
-                        "N/A"
-                      )}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {user.profile?.full_name || "N/A"}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {user.email}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {user.profile?.phone_number || "N/A"}
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      {user.profile?.profession || "N/A"}
-                    </td>
-                    {status === "pending" && (
-                      <td className="border border-gray-300 px-4 py-2">
-                        <button
-                          onClick={() =>
-                            handleStatusChange(
-                              user.email,
-                              String(user.profile?.date_of_birth),
-                              ApprovedByAdminStatus.APPROVED
-                            )
-                          }
-                          className="bg-green-500 text-white px-3 py-1 rounded mr-2"
-                        >
-                          Approve
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleStatusChange(
-                              user.email,
-                              String(user.profile?.date_of_birth),
-                              ApprovedByAdminStatus.REJECTED
-                            )
-                          }
-                          className="bg-red-500 text-white px-3 py-1 rounded"
-                        >
-                          Reject
-                        </button>
-                      </td>
-                    )}
-                    {status === "approved" && (
-                      <>
-                        <td className="border border-gray-300 px-4 py-2 text-green-600 font-bold">
-                          Approved
-                        </td>
-
-                        <td className="border border-gray-300 px-4 py-2 flex flex-col gap-y-1">
-                          <select
-                            className="border border-gray-400 rounded px-2 py-1 text-sm"
-                            value={
-                              selectedStatuses[user.profile?._id as string] ??
-                              user.profile?.event_creation_approval
-                            }
-                            onChange={(e) =>
-                              setSelectedStatuses((prev) => ({
-                                ...prev,
-                                [user.profile?._id as string]: e.target
-                                  .value as ApprovedByAdminStatus,
-                              }))
-                            }
-                          >
-                            <option value="approved">✅ Approved</option>
-                            <option value="pending">⏳ Pending</option>
-                            <option value="rejected">❌ Rejected</option>
-                          </select>
-
-                          {selectedStatuses[user.profile?._id as string] &&
-                            selectedStatuses[user.profile?._id as string] !==
-                              user.profile?.event_creation_approval && (
-                              <button
-                                onClick={() =>
-                                  saveStatusChange(user.profile?._id as string)
-                                }
-                                className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition"
-                              >
-                                {statusLoading ? <CustomLoader /> : "Save"}
-                              </button>
-                            )}
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan={status === "pending" ? 8 : 7}
-                    className="border border-gray-300 px-4 py-2 text-center"
-                  >
-                    No users found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+      <div className='min-h-screen flex justify-center items-center'>
+        <div className='relative'>
+          <div className='w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin'></div>
+          <div className='absolute inset-0 w-16 h-16 border-4 border-transparent border-r-pink-400 rounded-full animate-spin animate-reverse'></div>
         </div>
       </div>
     );
-  };
+
+  if (error)
+    return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='bg-red-50 border border-red-200 rounded-2xl p-8 max-w-md mx-auto text-center'>
+          <div className='text-red-500 text-4xl mb-4'>⚠️</div>
+          <h3 className='text-lg font-semibold text-red-800 mb-2'>Error</h3>
+          <p className='text-red-600'>{error}</p>
+        </div>
+      </div>
+    );
+
+  if (users.length === 0)
+    return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-8 max-w-md mx-auto text-center'>
+          <div className='text-blue-500 text-4xl mb-4'>👥</div>
+          <h3 className='text-lg font-semibold text-blue-800 mb-2'>
+            No Users Found
+          </h3>
+          <p className='text-blue-600'>
+            There are currently no users in the system.
+          </p>
+        </div>
+      </div>
+    );
 
   return (
-    <div className="p-6 text-black">
-      <h1 className="text-2xl font-bold mb-4">Users List</h1>
-      {renderTable("Approved Users", "approved")}
-      {renderTable("Pending Users", "pending")}
-      {renderTable("Rejected Users", "rejected")}
+    <div className='min-h-screen space-y-6'>
+      {/* Header Section */}
+      <div className='relative overflow-hidden'>
+        <div className='absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-3xl blur-3xl'></div>
+        <div className='relative bg-gradient-to-r from-slate-50 to-white border border-gray-200 rounded-3xl p-8 shadow-lg'>
+          <div className='flex flex-col lg:flex-row lg:items-center justify-between gap-6'>
+            <div>
+              <h1 className='text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-2'>
+                User Management
+              </h1>
+              <p className='text-gray-600 text-lg'>
+                Manage user accounts, approvals, and permissions
+              </p>
+            </div>
+            <div className='flex items-center gap-6'>
+              <div className='text-center'>
+                <div className='text-3xl font-bold text-emerald-600'>
+                  {
+                    users.filter((u) => u.profile?.is_approved === 'approved')
+                      .length
+                  }
+                </div>
+                <div className='text-sm text-gray-500 uppercase tracking-wider'>
+                  Approved
+                </div>
+              </div>
+              <div className='text-center'>
+                <div className='text-3xl font-bold text-amber-600'>
+                  {
+                    users.filter((u) => u.profile?.is_approved === 'pending')
+                      .length
+                  }
+                </div>
+                <div className='text-sm text-gray-500 uppercase tracking-wider'>
+                  Pending
+                </div>
+              </div>
+              <div className='text-center'>
+                <div className='text-3xl font-bold text-red-600'>
+                  {
+                    users.filter((u) => u.profile?.is_approved === 'rejected')
+                      .length
+                  }
+                </div>
+                <div className='text-sm text-gray-500 uppercase tracking-wider'>
+                  Rejected
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters Section */}
+      <div className='bg-white border border-gray-200 rounded-2xl p-6 shadow-lg'>
+        <div className='flex flex-col lg:flex-row lg:items-center gap-4'>
+          {/* Search */}
+          <div className='flex-1'>
+            <div className='relative'>
+              <svg
+                className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                />
+              </svg>
+              <input
+                type='text'
+                placeholder='Search users by name, email, phone, or profession...'
+                className='w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className='flex items-end gap-4'>
+            {/* Status Filter */}
+            <div className='min-w-[200px]'>
+              <CustomSelect
+                label='Filter by Status'
+                value={statusFilter}
+                onChange={(value) => {
+                  setStatusFilter(value as 'all' | ApprovedByAdminStatus);
+                  setCurrentPage(1);
+                }}
+                options={[
+                  {
+                    value: 'all',
+                    label: 'All Users',
+                    icon: <span>👥</span>,
+                    color: 'text-gray-600',
+                  },
+                  {
+                    value: 'approved',
+                    label: 'Approved',
+                    icon: <span>✅</span>,
+                    color: 'text-emerald-600',
+                  },
+                  {
+                    value: 'pending',
+                    label: 'Pending',
+                    icon: <span>⏳</span>,
+                    color: 'text-amber-600',
+                  },
+                  {
+                    value: 'rejected',
+                    label: 'Rejected',
+                    icon: <span>❌</span>,
+                    color: 'text-red-600',
+                  },
+                ]}
+                size='md'
+              />
+            </div>
+
+            {/* Items per page */}
+            <div className='min-w-[140px]'>
+              <CustomSelect
+                label='Show'
+                value={itemsPerPage.toString()}
+                onChange={(value) => {
+                  setItemsPerPage(Number(value));
+                  setCurrentPage(1);
+                }}
+                options={[
+                  {
+                    value: '5',
+                    label: '5 per page',
+                    icon: <span>📄</span>,
+                    color: 'text-blue-600',
+                  },
+                  {
+                    value: '10',
+                    label: '10 per page',
+                    icon: <span>📄</span>,
+                    color: 'text-blue-600',
+                  },
+                  {
+                    value: '25',
+                    label: '25 per page',
+                    icon: <span>📄</span>,
+                    color: 'text-blue-600',
+                  },
+                  {
+                    value: '50',
+                    label: '50 per page',
+                    icon: <span>📄</span>,
+                    color: 'text-blue-600',
+                  },
+                ]}
+                size='md'
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Table */}
+      <Table
+        data={paginatedUsers}
+        columns={columns}
+        onRowClick={handleRowClick}
+        rowKey='_id'
+        loading={loading}
+        emptyMessage='No users match your current filters'
+      />
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          itemsPerPage={itemsPerPage}
+          totalItems={filteredUsers.length}
+        />
+      )}
+
+      {/* User Detail Modal */}
+      <Modal
+        isOpen={showModal}
+        onClose={closeModal}
+        title={`User Details - ${selectedUser?.profile?.full_name || selectedUser?.email}`}
+        maxWidth='max-w-4xl'
+      >
+        {selectedUser && (
+          <UserDetail
+            user={selectedUser}
+            onStatusChange={handleStatusChange}
+            onEventAccessChange={handleEventAccessChange}
+          />
+        )}
+      </Modal>
     </div>
   );
 };
