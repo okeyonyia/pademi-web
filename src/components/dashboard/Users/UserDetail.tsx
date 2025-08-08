@@ -139,7 +139,7 @@ const UserDetail: React.FC<UserDetailProps> = ({
             {user.profile.interests.map((interest, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 rounded-full text-sm font-medium border border-purple-200"
+                className="px-3 py-1 bg-gradient-to-r from-indigo-100 to-violet-100 text-indigo-800 rounded-full text-sm font-medium border border-indigo-200"
               >
                 {interest}
               </span>
@@ -164,7 +164,7 @@ const UserDetail: React.FC<UserDetailProps> = ({
                   height={200}
                   className="rounded-xl hover:scale-105 transition-transform duration-300"
                   fallbackInitial={user.profile?.full_name?.charAt(0)?.toUpperCase() || '?'}
-                  gradientClasses="from-purple-500 to-pink-500"
+                  gradientClasses="from-indigo-500 to-violet-500"
                 />
               </div>
             ))}
@@ -239,7 +239,7 @@ const UserDetail: React.FC<UserDetailProps> = ({
                     onClick={() => onEventAccessChange(user.profile?._id as string, status)}
                     className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       user.profile?.event_creation_approval === status
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white shadow-lg'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -253,7 +253,7 @@ const UserDetail: React.FC<UserDetailProps> = ({
       </div>
 
       {/* Additional Info */}
-      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+      <div className="bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-200 rounded-2xl p-6">
         <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
           <span>ℹ️</span> System Information
         </h4>

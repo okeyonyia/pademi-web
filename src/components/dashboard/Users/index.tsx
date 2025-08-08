@@ -346,8 +346,8 @@ const UsersData: React.FC = () => {
     return (
       <div className='min-h-screen flex justify-center items-center'>
         <div className='relative'>
-          <div className='w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin'></div>
-          <div className='absolute inset-0 w-16 h-16 border-4 border-transparent border-r-pink-400 rounded-full animate-spin animate-reverse'></div>
+          <div className='w-16 h-16 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin'></div>
+          <div className='absolute inset-0 w-16 h-16 border-4 border-transparent border-r-violet-400 rounded-full animate-spin animate-reverse'></div>
         </div>
       </div>
     );
@@ -366,12 +366,12 @@ const UsersData: React.FC = () => {
   if (users.length === 0)
     return (
       <div className='min-h-screen flex items-center justify-center'>
-        <div className='bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-8 max-w-md mx-auto text-center'>
-          <div className='text-blue-500 text-4xl mb-4'>👥</div>
-          <h3 className='text-lg font-semibold text-blue-800 mb-2'>
+        <div className='bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-200 rounded-2xl p-8 max-w-md mx-auto text-center'>
+          <div className='text-indigo-500 text-4xl mb-4'>👥</div>
+          <h3 className='text-lg font-semibold text-indigo-800 mb-2'>
             No Users Found
           </h3>
-          <p className='text-blue-600'>
+          <p className='text-indigo-600'>
             There are currently no users in the system.
           </p>
         </div>
@@ -382,8 +382,8 @@ const UsersData: React.FC = () => {
     <div className='min-h-screen space-y-6'>
       {/* Header Section */}
       <div className='relative overflow-hidden'>
-        <div className='absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-3xl blur-3xl'></div>
-        <div className='relative bg-gradient-to-r from-slate-50 to-white border border-gray-200 rounded-3xl p-8 shadow-lg'>
+        <div className='absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-violet-600/10 rounded-3xl blur-3xl'></div>
+        <div className='relative bg-gradient-to-r from-indigo-50 via-purple-50 to-violet-50 border border-indigo-200 rounded-3xl p-8 shadow-lg'>
           <div className='flex flex-col lg:flex-row lg:items-center justify-between gap-6'>
             <div>
               <h1 className='text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-2'>
@@ -454,7 +454,7 @@ const UsersData: React.FC = () => {
               <input
                 type='text'
                 placeholder='Search users by name, email, phone, or profession...'
-                className='w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300'
+                className='w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

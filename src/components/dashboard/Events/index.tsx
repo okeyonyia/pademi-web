@@ -22,9 +22,7 @@ const EventsData: React.FC = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   // Filter state
-  const [statusFilter, setStatusFilter] = useState<
-    'all' | 'active' | 'upcoming' | 'past'
-  >('all');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'upcoming' | 'past'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [eventTypeFilter, setEventTypeFilter] = useState<string>('all');
 
@@ -38,7 +36,7 @@ const EventsData: React.FC = () => {
       filtered = filtered.filter((event) => {
         const startDate = new Date(event.start_date);
         const endDate = new Date(event.end_date);
-
+        
         switch (statusFilter) {
           case 'active':
             return startDate <= now && endDate >= now;
@@ -54,9 +52,8 @@ const EventsData: React.FC = () => {
 
     // Apply event type filter
     if (eventTypeFilter !== 'all') {
-      filtered = filtered.filter(
-        (event) =>
-          event.event_type.toLowerCase() === eventTypeFilter.toLowerCase()
+      filtered = filtered.filter((event) => 
+        event.event_type.toLowerCase() === eventTypeFilter.toLowerCase()
       );
     }
 
@@ -102,8 +99,7 @@ const EventsData: React.FC = () => {
           border: 'border-emerald-200',
           text: 'text-emerald-800',
           icon: '🟢',
-          badge:
-            'bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 border-emerald-200',
+          badge: 'bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 border-emerald-200',
         };
       case 'upcoming':
         return {
@@ -112,8 +108,7 @@ const EventsData: React.FC = () => {
           border: 'border-blue-200',
           text: 'text-blue-800',
           icon: '⏰',
-          badge:
-            'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border-blue-200',
+          badge: 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border-blue-200',
         };
       case 'past':
         return {
@@ -122,8 +117,7 @@ const EventsData: React.FC = () => {
           border: 'border-gray-200',
           text: 'text-gray-800',
           icon: '⏹️',
-          badge:
-            'bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border-gray-200',
+          badge: 'bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border-gray-200',
         };
       default:
         return {
@@ -132,8 +126,7 @@ const EventsData: React.FC = () => {
           border: 'border-blue-200',
           text: 'text-blue-800',
           icon: '🎉',
-          badge:
-            'bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200',
+          badge: 'bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200',
         };
     }
   };
@@ -142,21 +135,21 @@ const EventsData: React.FC = () => {
     const now = new Date();
     const startDate = new Date(event.start_date);
     const endDate = new Date(event.end_date);
-
+    
     if (startDate <= now && endDate >= now) return 'active';
     if (startDate > now) return 'upcoming';
     return 'past';
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-NG', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'NGN'
     }).format(amount);
   };
 
   const getUniqueEventTypes = () => {
-    const types = events.map((event) => event.event_type).filter(Boolean);
+    const types = events.map(event => event.event_type).filter(Boolean);
     return [...new Set(types)];
   };
 
@@ -183,9 +176,7 @@ const EventsData: React.FC = () => {
             <div className='font-semibold text-gray-900 truncate'>
               {event.title || 'No Title'}
             </div>
-            <div className='text-sm text-gray-500 truncate'>
-              {event.event_type}
-            </div>
+            <div className='text-sm text-gray-500 truncate'>{event.event_type}</div>
           </div>
         </div>
       ),
@@ -275,7 +266,7 @@ const EventsData: React.FC = () => {
               e.stopPropagation();
               handleRowClick(event);
             }}
-            className='px-3 py-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg text-xs font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 whitespace-nowrap'
+            className='px-3 py-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 text-white rounded-lg text-xs font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 whitespace-nowrap'
           >
             View Details
           </button>
@@ -318,7 +309,10 @@ const EventsData: React.FC = () => {
     }
   };
 
-  const handleStatusChange = async (eventId: string, status: EventStatus) => {
+  const handleStatusChange = async (
+    eventId: string,
+    status: EventStatus
+  ) => {
     // This would typically make an API call to update event status
     // For now, we'll just log it since you might not have the backend endpoint yet
     console.log(`Would update event ${eventId} status to ${status}`);
@@ -366,7 +360,7 @@ const EventsData: React.FC = () => {
       {/* Header Section */}
       <div className='relative overflow-hidden'>
         <div className='absolute inset-0 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl blur-3xl'></div>
-        <div className='relative bg-gradient-to-r from-slate-50 to-white border border-gray-200 rounded-3xl p-8 shadow-lg'>
+        <div className='bg-gradient-to-r from-indigo-50 via-purple-50 to-violet-50 border border-indigo-200 rounded-3xl p-8 shadow-lg'>
           <div className='flex flex-col lg:flex-row lg:items-center justify-between gap-6'>
             <div>
               <h1 className='text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-2'>
@@ -378,7 +372,7 @@ const EventsData: React.FC = () => {
             </div>
             <div className='flex items-center gap-6'>
               <div className='text-center'>
-                <div className='text-3xl font-bold text-blue-600'>
+              <div className='text-3xl font-bold text-indigo-600'>
                   {events.length}
                 </div>
                 <div className='text-sm text-gray-500 uppercase tracking-wider'>
@@ -387,14 +381,17 @@ const EventsData: React.FC = () => {
               </div>
               <div className='text-center'>
                 <div className='text-3xl font-bold text-emerald-600'>
-                  {events.filter((e) => getEventStatus(e) === 'active').length}
+                  {
+                    events.filter((e) => getEventStatus(e) === 'active')
+                      .length
+                  }
                 </div>
                 <div className='text-sm text-gray-500 uppercase tracking-wider'>
                   Active
                 </div>
               </div>
               <div className='text-center'>
-                <div className='text-3xl font-bold text-cyan-600'>
+                <div className='text-3xl font-bold text-violet-600'>
                   {
                     events.filter((e) => getEventStatus(e) === 'upcoming')
                       .length
@@ -446,38 +443,36 @@ const EventsData: React.FC = () => {
                 label='Filter by Status'
                 value={statusFilter}
                 onChange={(value) => {
-                  setStatusFilter(
-                    value as 'all' | 'active' | 'upcoming' | 'past'
-                  );
+                  setStatusFilter(value as 'all' | 'active' | 'upcoming' | 'past');
                   setCurrentPage(1);
                 }}
                 options={[
                   {
                     value: 'all',
                     label: 'All Events',
-                    icon: '',
+                    icon: <span>🎉</span>,
                     color: 'text-gray-600',
                   },
                   {
                     value: 'active',
                     label: 'Active',
-                    icon: '',
+                    icon: <span>🟢</span>,
                     color: 'text-emerald-600',
                   },
                   {
                     value: 'upcoming',
                     label: 'Upcoming',
-                    icon: '',
+                    icon: <span>⏰</span>,
                     color: 'text-blue-600',
                   },
                   {
                     value: 'past',
                     label: 'Past',
-                    icon: '',
+                    icon: <span>⏹️</span>,
                     color: 'text-gray-600',
                   },
                 ]}
-                size='sm'
+                size='md'
               />
             </div>
 
@@ -494,17 +489,17 @@ const EventsData: React.FC = () => {
                   {
                     value: 'all',
                     label: 'All Types',
-                    icon: '',
+                    icon: <span>📂</span>,
                     color: 'text-gray-600',
                   },
-                  ...getUniqueEventTypes().map((type) => ({
+                  ...getUniqueEventTypes().map(type => ({
                     value: type,
                     label: type,
-                    icon: '',
+                    icon: <span>🏷️</span>,
                     color: 'text-purple-600',
-                  })),
+                  }))
                 ]}
-                size='sm'
+                size='md'
               />
             </div>
 
@@ -521,29 +516,29 @@ const EventsData: React.FC = () => {
                   {
                     value: '5',
                     label: '5 per page',
-                    icon: '',
+                    icon: <span>📄</span>,
                     color: 'text-blue-600',
                   },
                   {
                     value: '10',
                     label: '10 per page',
-                    icon: '',
+                    icon: <span>📄</span>,
                     color: 'text-blue-600',
                   },
                   {
                     value: '25',
                     label: '25 per page',
-                    icon: '',
+                    icon: <span>📄</span>,
                     color: 'text-blue-600',
                   },
                   {
                     value: '50',
                     label: '50 per page',
-                    icon: '',
+                    icon: <span>📄</span>,
                     color: 'text-blue-600',
                   },
                 ]}
-                size='sm'
+                size='md'
               />
             </div>
           </div>

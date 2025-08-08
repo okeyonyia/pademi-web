@@ -38,25 +38,25 @@ const Sidebar = () => {
       href: '/dashboard/users',
       label: 'Users',
       icon: <User size={20} />,
-      gradient: 'from-purple-500 to-pink-500',
+      gradient: 'from-indigo-500 to-violet-500',
     },
     {
       href: '/dashboard/events',
       label: 'Events',
       icon: <BiParty size={20} />,
-      gradient: 'from-blue-500 to-cyan-500',
+      gradient: 'from-purple-500 to-indigo-600',
     },
     {
       href: '/dashboard/restaurants',
       label: 'Restaurants',
       icon: <Store size={20} />,
-      gradient: 'from-orange-500 to-red-500',
+      gradient: 'from-violet-500 to-purple-600',
     },
   ];
 
   if (!isMounted) {
     return (
-      <div className='w-72 h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 border-r border-white/10 animate-pulse'>
+      <div className='w-72 h-screen bg-gradient-to-b from-slate-900 via-indigo-900 to-slate-900 border-r border-white/10 animate-pulse'>
         <div className='p-6'>
           <div className='flex items-center gap-4'>
             <div className='relative'>
@@ -78,12 +78,12 @@ const Sidebar = () => {
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-screen overflow-y-auto bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 text-white w-72 z-50 backdrop-blur-xl border-r border-white/10 transition-transform duration-500 ease-out ${
+        className={`fixed top-0 left-0 h-screen overflow-y-auto bg-gradient-to-b from-slate-900 via-indigo-900 to-slate-900 text-white w-72 z-50 backdrop-blur-xl border-r border-white/10 transition-transform duration-500 ease-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen`}
       >
         {/* Gradient Overlay */}
-        <div className='absolute inset-0 bg-gradient-to-br from-indigo-900/50 via-purple-900/30 to-pink-900/50 backdrop-blur-sm'></div>
+        <div className='absolute inset-0 bg-gradient-to-br from-indigo-900/50 via-purple-900/30 to-violet-900/50 backdrop-blur-sm'></div>
 
         {/* Content */}
         <div className='relative z-10 flex flex-col h-full'>
@@ -91,7 +91,7 @@ const Sidebar = () => {
           <div className='flex-shrink-0 p-6 border-b border-white/10'>
             <div className='flex items-center gap-4'>
               <div className='relative'>
-                <div className='absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl blur-md opacity-75'></div>
+                <div className='absolute inset-0 bg-gradient-to-r from-indigo-400 to-violet-500 rounded-2xl blur-md opacity-75'></div>
                 <div className='relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-2'>
                   <div className='w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center'>
                     <SafeImage
@@ -101,13 +101,13 @@ const Sidebar = () => {
                       height={36}
                       className='rounded-lg'
                       fallbackInitial='P'
-                      gradientClasses='from-blue-400 to-purple-500'
+                      gradientClasses='from-indigo-400 to-violet-500'
                     />
                   </div>
                 </div>
               </div>
               <div className='flex-1'>
-                <h1 className='text-xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent'>
+                <h1 className='text-xl font-bold bg-gradient-to-r from-white via-indigo-100 to-violet-200 bg-clip-text text-transparent'>
                   Pademi
                 </h1>
                 <p className='text-xs text-white/60 font-medium'>
@@ -182,7 +182,7 @@ const Sidebar = () => {
 
                     {/* Active indicator */}
                     {isActive && (
-                      <div className='absolute right-4 w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex-shrink-0'></div>
+                      <div className='absolute right-4 w-2 h-2 bg-gradient-to-r from-indigo-400 to-violet-500 rounded-full flex-shrink-0'></div>
                     )}
                   </Link>
                 );
@@ -194,7 +194,7 @@ const Sidebar = () => {
           <div className='flex-shrink-0 p-6 border-t border-white/10'>
             <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 mb-4'>
               <div className='flex items-center gap-3'>
-                <div className='w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0'>
+                <div className='w-10 h-10 bg-gradient-to-r from-indigo-400 to-violet-500 rounded-full flex items-center justify-center flex-shrink-0'>
                   <User size={16} className='text-white' />
                 </div>
                 <div className='flex-1 min-w-0'>
@@ -224,8 +224,8 @@ const Sidebar = () => {
         </div>
 
         {/* Decorative Elements */}
-        <div className='absolute top-32 right-4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-2xl pointer-events-none'></div>
-        <div className='absolute bottom-32 left-4 w-24 h-24 bg-gradient-to-r from-pink-500/10 to-red-500/10 rounded-full blur-xl pointer-events-none'></div>
+        <div className='absolute top-32 right-4 w-32 h-32 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-full blur-2xl pointer-events-none'></div>
+        <div className='absolute bottom-32 left-4 w-24 h-24 bg-gradient-to-r from-purple-500/10 to-violet-500/10 rounded-full blur-xl pointer-events-none'></div>
       </div>
 
       {/* Overlay for mobile */}
@@ -239,7 +239,7 @@ const Sidebar = () => {
       {/* Toggle Button */}
       {!isOpen && (
         <button
-          className='fixed top-6 left-6 z-50 lg:hidden bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-3 rounded-xl shadow-lg hover:shadow-xl backdrop-blur-sm border border-white/20 hover:scale-105 transition-all duration-300'
+          className='fixed top-6 left-6 z-50 lg:hidden bg-gradient-to-r from-indigo-600 to-violet-600 text-white p-3 rounded-xl shadow-lg hover:shadow-xl backdrop-blur-sm border border-white/20 hover:scale-105 transition-all duration-300'
           onClick={toggleSidebar}
         >
           <Menu size={20} />

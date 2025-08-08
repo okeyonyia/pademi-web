@@ -15,13 +15,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
+    <div className="bg-gradient-to-br from-slate-50 via-indigo-50 to-violet-100 min-h-screen">
       <AuthProvider>
         <ProtectedRoute>
           <div className="flex min-h-screen">
             <NoSSR 
               fallback={
-                <div className="w-72 h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 border-r border-white/10 animate-pulse">
+                <div className="w-72 h-screen bg-gradient-to-b from-slate-900 via-indigo-900 to-slate-900 border-r border-white/10 animate-pulse">
                   <div className="p-6">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-white/10 rounded-2xl"></div>
