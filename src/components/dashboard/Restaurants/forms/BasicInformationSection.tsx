@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import GooglePlacesAutocomplete from '@/components/common/GooglePlacesAutocomplete';
 
 interface BasicInformationSectionProps {
   form: {
@@ -30,7 +33,7 @@ const BasicInformationSection: React.FC<BasicInformationSectionProps> = ({
             type='text'
             value={form.name}
             onChange={(e) => onChange('name', e.target.value)}
-            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900'
             placeholder='Enter restaurant name'
             disabled={disabled}
           />
@@ -43,7 +46,7 @@ const BasicInformationSection: React.FC<BasicInformationSectionProps> = ({
             type='tel'
             value={form.phone_number}
             onChange={(e) => onChange('phone_number', e.target.value)}
-            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900'
             placeholder='+234XXXXXXXXXX'
             disabled={disabled}
           />
@@ -53,13 +56,22 @@ const BasicInformationSection: React.FC<BasicInformationSectionProps> = ({
         <label className='block text-sm font-medium text-gray-700 mb-2'>
           Address *
         </label>
-        <input
-          type='text'
+        <GooglePlacesAutocomplete
           value={form.address}
-          onChange={(e) => onChange('address', e.target.value)}
-          className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-          placeholder='Enter full address'
+          onChange={(val) => onChange('address', val)}
+          onPlaceSelected={(place) => {
+            const address = place.formattedAddress || place.description || '';
+            onChange('address', address);
+            if (place.placeId) onChange('google_place_id', place.placeId);
+            if (place.latLng) {
+              onChange('latitude', String(place.latLng.lat));
+              onChange('longitude', String(place.latLng.lng));
+            }
+          }}
+          className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900'
+          placeholder='Start typing address...'
           disabled={disabled}
+          countryRestriction={['ng']}
         />
       </div>
       <div>
@@ -69,7 +81,7 @@ const BasicInformationSection: React.FC<BasicInformationSectionProps> = ({
         <textarea
           value={form.description}
           onChange={(e) => onChange('description', e.target.value)}
-          className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-24 resize-none'
+          className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 h-24 resize-none text-gray-900'
           placeholder='Brief description of the restaurant'
           disabled={disabled}
         />

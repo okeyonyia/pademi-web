@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from 'react';
 import SafeImage from "@/components/common/SafeImage";
+import ProfilePictureModal from './ProfilePictureModal';
 import { User, ApprovedByAdminStatus } from "./index";
 
 interface UserDetailProps {
@@ -14,6 +16,13 @@ const UserDetail: React.FC<UserDetailProps> = ({
   onStatusChange,
   onEventAccessChange,
 }) => {
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleProfilePictureClick = (index: number = 0) => {
+    setSelectedImageIndex(index);
+    setShowProfileModal(true);
+  };
   const getStatusConfig = (status: string) => {
     switch (status) {
       case 'approved':
@@ -67,17 +76,26 @@ const UserDetail: React.FC<UserDetailProps> = ({
           {/* Profile Picture */}
           <div className="flex-shrink-0">
             {user.profile?.profile_pictures?.length ? (
-              <div className="relative">
-                <div className={`absolute inset-0 bg-gradient-to-r ${config.bgGradient} rounded-2xl blur-md opacity-75 scale-110`}></div>
+              <div className="relative cursor-pointer group" onClick={() => handleProfilePictureClick(0)}>
+                <div className={`absolute inset-0 bg-gradient-to-r ${config.bgGradient} rounded-2xl blur-md opacity-75 scale-110 group-hover:opacity-90 transition-opacity duration-200`}></div>
                 <SafeImage
                   src={user.profile.profile_pictures[0] || ''}
                   alt="Profile"
                   width={96}
                   height={96}
-                  className="rounded-2xl border-4 border-white shadow-lg"
+                  className="rounded-2xl border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-200"
                   fallbackInitial={user.profile?.full_name?.charAt(0)?.toUpperCase() || '?'}
                   gradientClasses={config.bgGradient}
                 />
+                {/* Click indicator */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-2xl transition-colors duration-200 flex items-center justify-center">
+                  <div className="bg-white/0 group-hover:bg-white/90 rounded-full p-2 transform scale-0 group-hover:scale-100 transition-all duration-200">
+                    <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className={`w-24 h-24 rounded-2xl bg-gradient-to-r ${config.bgGradient} flex items-center justify-center text-white text-3xl font-bold shadow-lg`}>
@@ -156,16 +174,28 @@ const UserDetail: React.FC<UserDetailProps> = ({
           </h4>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {user.profile.profile_pictures.map((picture, index) => (
-              <div key={index} className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <div 
+                key={index} 
+                className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group relative"
+                onClick={() => handleProfilePictureClick(index)}
+              >
                 <SafeImage
                   src={picture || ''}
                   alt={`Profile picture ${index + 1}`}
                   width={200}
                   height={200}
-                  className="rounded-xl hover:scale-105 transition-transform duration-300"
+                  className="rounded-xl group-hover:scale-110 transition-transform duration-300"
                   fallbackInitial={user.profile?.full_name?.charAt(0)?.toUpperCase() || '?'}
                   gradientClasses="from-indigo-500 to-violet-500"
                 />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 rounded-xl transition-colors duration-300 flex items-center justify-center">
+                  <div className="bg-white/0 group-hover:bg-white/90 rounded-full p-3 transform scale-0 group-hover:scale-100 transition-all duration-300">
+                    <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -268,6 +298,17 @@ const UserDetail: React.FC<UserDetailProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Profile Picture Modal */}
+      {user.profile?.profile_pictures && (
+        <ProfilePictureModal
+          isOpen={showProfileModal}
+          onClose={() => setShowProfileModal(false)}
+          images={user.profile.profile_pictures}
+          userName={user.profile?.full_name || 'User'}
+          initialIndex={selectedImageIndex}
+        />
+      )}
     </div>
   );
 };

@@ -121,7 +121,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
           <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
           
           {/* Dropdown Content */}
-          <div className="absolute z-20 w-full mt-2 bg-white/95 backdrop-blur-xl border border-gray-200/50 rounded-xl shadow-xl animate-in fade-in-0 slide-in-from-top-2 duration-200">
+          <div className="absolute z-20 w-full mt-2 bg-white border border-gray-300 rounded-xl shadow-xl animate-in fade-in-0 slide-in-from-top-2 duration-200">
             <div className="py-2 max-h-60 overflow-y-auto">
               {options.map((option) => {
                 const isSelected = option.value === value;
@@ -132,12 +132,12 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                     className={`
                       w-full px-4 py-3 text-left flex items-center gap-3
                       transition-all duration-200
-                      hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50
-                      focus:bg-gradient-to-r focus:from-purple-50 focus:to-pink-50
+                      hover:bg-gray-100
+                      focus:bg-gray-100
                       focus:outline-none
                       ${isSelected 
-                        ? "bg-gradient-to-r from-purple-100 to-pink-100 text-purple-900 font-semibold" 
-                        : "text-gray-700 hover:text-gray-900"
+                        ? "bg-gray-200 text-gray-900 font-semibold" 
+                        : "text-gray-800 hover:text-gray-900"
                       }
                     `}
                     onClick={() => handleSelect(option.value)}

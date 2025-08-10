@@ -28,7 +28,7 @@ const ContactInformationSection: React.FC<ContactInformationSectionProps> = ({
             type='email'
             value={form.email}
             onChange={(e) => onChange('email', e.target.value)}
-            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500'
+            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900'
             placeholder='restaurant@example.com'
             disabled={disabled}
           />
@@ -41,7 +41,7 @@ const ContactInformationSection: React.FC<ContactInformationSectionProps> = ({
             type='url'
             value={form.website}
             onChange={(e) => onChange('website', e.target.value)}
-            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900'
             placeholder='https://restaurant.com'
             disabled={disabled}
           />

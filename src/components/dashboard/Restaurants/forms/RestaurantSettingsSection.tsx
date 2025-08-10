@@ -6,7 +6,7 @@ interface RestaurantSettingsSectionProps {
     price_range: number;
     accepts_reservations: boolean;
   };
-  onChange: (field: string, value: any) => void;
+  onChange: (field: string, value: number | boolean) => void;
   disabled?: boolean;
 }
 

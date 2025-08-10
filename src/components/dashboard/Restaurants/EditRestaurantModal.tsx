@@ -10,8 +10,11 @@ import OpeningHoursSection, {
   OpeningHours,
   DayHours,
 } from './forms/OpeningHoursSection';
+import RestaurantStatusSection from './forms/RestaurantStatusSection';
+import PlatformSettingsSection from './forms/PlatformSettingsSection';
+import { Restaurant } from './types';
 
-export interface NewRestaurantForm {
+export interface EditRestaurantForm {
   name: string;
   description: string;
   address: string;
@@ -27,12 +30,18 @@ export interface NewRestaurantForm {
   images: string[];
   amenities: string[];
   opening_hours: OpeningHours;
+  is_active: boolean;
+  is_partner: boolean;
+  platform_discount_percentage: number;
+  platform_commission_percentage: number;
+  diner_discount_percentage: number;
 }
 
-interface AddRestaurantModalProps {
+interface EditRestaurantModalProps {
   isOpen: boolean;
   onClose: () => void;
-  form: NewRestaurantForm;
+  restaurant: Restaurant | null;
+  form: EditRestaurantForm;
   onFormChange: (field: string, value: string | number | boolean) => void;
   onCuisineTypeChange: (cuisine: string, checked: boolean) => void;
   onImagesChange: (images: string[]) => void;
@@ -42,9 +51,10 @@ interface AddRestaurantModalProps {
   isSubmitting: boolean;
 }
 
-const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
+const EditRestaurantModal: React.FC<EditRestaurantModalProps> = ({
   isOpen,
   onClose,
+  restaurant,
   form,
   onFormChange,
   onCuisineTypeChange,
@@ -55,12 +65,15 @@ const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
   isSubmitting,
 }) => {
   const isFormValid = form.name.trim() && form.address.trim();
+  const modalTitle = restaurant
+    ? `Edit Restaurant: ${restaurant.name}`
+    : 'Edit Restaurant';
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={() => !isSubmitting && onClose()}
-      title='Add New Restaurant'
+      title={modalTitle}
       maxWidth='max-w-4xl'
     >
       <div className='space-y-6'>
@@ -124,6 +137,27 @@ const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
           disabled={isSubmitting}
         />
 
+        {/* Status & Partner Settings */}
+        <RestaurantStatusSection
+          form={{
+            is_active: form.is_active,
+            is_partner: form.is_partner,
+          }}
+          onChange={onFormChange}
+          disabled={isSubmitting}
+        />
+
+        {/* Platform Settings */}
+        <PlatformSettingsSection
+          form={{
+            platform_discount_percentage: form.platform_discount_percentage,
+            platform_commission_percentage: form.platform_commission_percentage,
+            diner_discount_percentage: form.diner_discount_percentage,
+          }}
+          onChange={onFormChange}
+          disabled={isSubmitting}
+        />
+
         {/* Action Buttons */}
         <div className='flex justify-end gap-3 pt-6 border-t border-gray-200'>
           <button
@@ -141,7 +175,7 @@ const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
             {isSubmitting ? (
               <>
                 <div className='animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent'></div>
-                Creating...
+                Saving...
               </>
             ) : (
               <>
@@ -155,10 +189,10 @@ const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth={2}
-                    d='M12 6v6m0 0v6m0-6h6m-6 0H6'
+                    d='M5 13l4 4L19 7'
                   />
                 </svg>
-                Create Restaurant
+                Save Changes
               </>
             )}
           </button>
@@ -168,4 +202,4 @@ const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
   );
 };
 
-export default AddRestaurantModal;
+export default EditRestaurantModal;

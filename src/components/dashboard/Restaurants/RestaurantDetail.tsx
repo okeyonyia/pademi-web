@@ -8,11 +8,13 @@ import DeleteConfirmationModal from '@/components/common/DeleteConfirmationModal
 interface RestaurantDetailProps {
   restaurant: Restaurant;
   onDeleteRestaurant?: (restaurantId: string) => void;
+  onEditRestaurant?: (restaurant: Restaurant) => void;
 }
 
 const RestaurantDetail: React.FC<RestaurantDetailProps> = ({
   restaurant,
   onDeleteRestaurant,
+  onEditRestaurant,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -436,7 +438,7 @@ const RestaurantDetail: React.FC<RestaurantDetailProps> = ({
           <span>⚙️</span> Restaurant Management
         </h4>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
           {/* Status Information */}
           <div className='space-y-3'>
             <label className='block text-sm font-semibold text-gray-700 uppercase tracking-wider'>
@@ -454,6 +456,32 @@ const RestaurantDetail: React.FC<RestaurantDetailProps> = ({
                   ? 'Restaurant is currently accepting bookings and visible to users.'
                   : 'Restaurant is currently deactivated and not visible to users.'}
               </div>
+            </div>
+          </div>
+
+          {/* Edit Actions */}
+          <div className='space-y-3'>
+            <label className='block text-sm font-semibold text-gray-700 uppercase tracking-wider'>
+              Edit Restaurant
+            </label>
+            <div className='p-4 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200'>
+              <div className='mb-3'>
+                <span className='font-medium text-blue-800'>
+                  Update Details
+                </span>
+                <p className='text-sm text-blue-600 mt-1'>
+                  Edit restaurant information, hours, amenities and settings.
+                </p>
+              </div>
+
+              {onEditRestaurant && (
+                <button
+                  onClick={() => onEditRestaurant(restaurant)}
+                  className='w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-xl font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300'
+                >
+                  ✏️ Edit Restaurant
+                </button>
+              )}
             </div>
           </div>
 

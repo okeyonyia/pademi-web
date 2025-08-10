@@ -56,11 +56,11 @@ const Modal: React.FC<ModalProps> = ({
         className={`${maxWidth} w-full bg-white rounded-2xl shadow-2xl transform transition-all duration-300 scale-100 opacity-100 max-h-[90vh] overflow-hidden`}
       >
         {/* Header */}
-        <div className='flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50'>
-          <h2 className='text-2xl font-bold text-gray-900'>{title}</h2>
+        <div className='flex items-center justify-between p-6 border-b border-gray-300 bg-gray-800'>
+          <h2 className='text-2xl font-bold text-white'>{title}</h2>
           <button
             onClick={onClose}
-            className='p-2 text-gray-500 hover:text-gray-700 hover:bg-white rounded-xl transition-all duration-200'
+            className='p-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-xl transition-all duration-200'
           >
             <svg
               className='w-6 h-6'
