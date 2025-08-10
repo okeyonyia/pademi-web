@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
 /**
  * HttpClient class provides methods to perform HTTP requests.
@@ -8,7 +8,7 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 class HttpClient {
   private axiosInstance = axios.create({
     // baseURL: "http://192.168.1.9:8000/api/v1", // Local URL
-    baseURL: "https://pademi.vercel.app/api/v1", // Set Prod. base URL
+    baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1`,
     // timeout: 15000, // Set timeout (optional)
   });
 
@@ -18,9 +18,9 @@ class HttpClient {
       async (config) => {
         const token = this.getToken();
         if (token) {
-          config.headers["Authorization"] = `Bearer ${token}`;
+          config.headers['Authorization'] = `Bearer ${token}`;
         }
-        config.headers["Content-Type"] = "application/json";
+        config.headers['Content-Type'] = 'application/json';
         return config;
       },
       (error) => Promise.reject(error)
@@ -32,7 +32,7 @@ class HttpClient {
       async (error) => {
         if (error.response?.status === 401) {
           this.clearToken();
-          window.location.href = "/login"; // Redirect user to login
+          window.location.href = '/login'; // Redirect user to login
         }
         return Promise.reject(error);
       }
@@ -41,20 +41,20 @@ class HttpClient {
 
   /** Get token from localStorage (only if in browser) */
   private getToken(): string | null {
-    return typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   }
 
   /** Save token to localStorage after login */
   public setToken(token: string) {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("token", token);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('token', token);
     }
   }
 
   /** Clear token (e.g., on logout or expired session) */
   public clearToken() {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("token");
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
     }
   }
 
@@ -86,10 +86,10 @@ class HttpClient {
     const results = await Promise.allSettled(promises);
 
     return results.map((result) => {
-      if (result.status === "fulfilled") {
+      if (result.status === 'fulfilled') {
         return result.value;
       } else {
-        console.error("One of the GET requests failed:", result.reason);
+        console.error('One of the GET requests failed:', result.reason);
         return null;
       }
     });
