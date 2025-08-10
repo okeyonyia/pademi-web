@@ -43,7 +43,6 @@ const ProfilePictureModal: React.FC<ProfilePictureModalProps> = ({
       onClose={onClose}
       title={`${userName}'s Profile Pictures`}
       maxWidth="max-w-4xl"
-      className="profile-picture-modal"
     >
       <div className="space-y-4" onKeyDown={handleKeyPress} tabIndex={0}>
         {/* Main Image Display */}
